@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cardio & Endurance – GymFirst</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="Gym.css">
+  <link rel="stylesheet" href="GymProgram.css">
+
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #1c1c1c;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* ===== PROGRAM HERO ===== */
+    .program-hero {
+      height: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      position: relative;
+      background: url('https://media.istockphoto.com/id/882815206/photo/man-running-at-the-gym.jpg?s=612x612&w=0&k=20&c=hYl2UlySVqc6wRDWFEAal4mXEY_5CzQCsiKAGhef4z0=') center/cover no-repeat;
+      background-color: #111; /* fallback */
+    }
+
+    /* Overlay */
+    .program-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0,0,0,0.6);
+      z-index: 0;
+    }
+
+    .program-hero h1,
+    .program-hero p {
+      position: relative;
+      z-index: 1;
+      color: #fff;
+      margin: 0;
+    }
+
+    .program-hero h1 {
+      font-size: 2.2rem; /* smaller to avoid menu clutter */
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 8px #000;
+    }
+
+    .program-hero p {
+      font-size: 1rem;
+      max-width: 600px;
+    }
+
+    .program-content {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .program-section {
+      margin-bottom: 30px;
+    }
+
+    .program-section h2 {
+      font-size: 2em;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #ff6b6b;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+
+    .program-section ul {
+      list-style: disc;
+      padding-left: 20px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background-color: #ff6b6b;
+      color: #fff;
+      padding: 15px 30px;
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 5px;
+      transition: background 0.3s;
+      margin-top: 20px;
+    }
+
+    .cta-button:hover {
+      background-color: #ff4c4c;
+    }
+
+    .back-link {
+      display: block;
+      margin-top: 30px;
+      color: #fff;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body style="animation: FadeUp 0.4 ease-in;">
+
+<header class="header">
+  <div class="nav-container">
+    <h2 class="logo">GYM<span>First</span></h2>
+    <ul class="nav-links">
+      <li><a href="Gymindex.html">Home</a></li>
+      <li><a href="GymPrograms.html">Programs</a></li>
+      <li><a href="trainers.html">Trainers</a></li>
+      <li><a href="Membership.html">Membership</a></li>
+    </ul>
+    <div class="dropdown">
+      <a href="#" class="cta">Join Now</a>
+    </div>
+  </div>
+</header>
+
+<!-- Hero Banner -->
+<section class="program-hero">
+  <h1>Cardio & Endurance</h1>
+  <p>Boost your stamina, burn calories, and improve cardiovascular health with structured cardio workouts for all levels.</p>
+</section>
+
+<!-- Program Content -->
+<section class="program-content">
+
+  <!-- Goals -->
+  <div class="program-section">
+    <h2>Program Goals</h2>
+    <ul>
+      <li>Increase cardiovascular endurance</li>
+      <li>Burn fat and improve metabolic efficiency</li>
+      <li>Enhance overall fitness and energy levels</li>
+    </ul>
+  </div>
+
+  <!-- Benefits -->
+  <div class="program-section">
+    <h2>Benefits</h2>
+    <ul>
+      <li>Structured cardio routines for all levels</li>
+      <li>Heart-healthy workouts that improve circulation</li>
+      <li>Calorie burning and weight management support</li>
+      <li>Boost stamina for sports and daily activities</li>
+    </ul>
+  </div>
+
+  <!-- Who It’s For -->
+  <div class="program-section">
+    <h2>Who Is This Program For?</h2>
+    <ul>
+      <li>Individuals aiming to improve stamina and endurance</li>
+      <li>Those looking to burn fat and boost metabolism</li>
+      <li>Anyone wanting heart-healthy, guided workouts</li>
+    </ul>
+  </div>
+
+  <!-- CTA -->
+  <a href="Membership.html" class="cta-button">Join Cardio Program Now</a>
+
+  <a href="GymPrograms.html" class="back-link">&larr; Back to Programs</a>
+</section>
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <h2>GYM<span>First</span></h2>
+      <p>Train with purpose. Build strength for life.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <a href="#programs">Membership</a>
+      <a href="#join">Pricing</a>
+      <a href="#contact">Contact</a>
+      <a href="#about">About Us</a>
+    </div>
+    <div class="footer-social">
+      <h4>Follow Us</h4>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 GymFirst. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>

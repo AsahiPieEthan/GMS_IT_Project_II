@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Transaction | GymFirst</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Fjalla+One&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="Gym.css">
+  <link rel="stylesheet" href="Transaction.css">
+</head>
+
+<body style="font-family: 'Fjalla One', sans-serif;">
+
+<header class="header">
+  <div class="nav-container">
+    <h2 class="logo">GYM<span>First</span></h2>
+    <ul class="nav-links">
+      <li><a href="Gymindex.html">Home</a></li>
+      <li><a href="Membership.html">Membership</a></li>
+      <span class="nav-indicator"></span>
+    </ul>
+    <a href="Membership.html#join" class="cta">Join Now</a>
+  </div>
+</header>
+
+<section class="transaction-section">
+  <div class="transaction-container">
+
+    <!-- PLAN SUMMARY -->
+    <div class="plan-summary">
+      <h2 id="planName">Selected Plan</h2>
+      <p class="plan-price" id="planPrice">$0</p>
+    </div>
+
+    <!-- TRANSACTION FORM -->
+    <form class="transaction-form">
+
+      <h3>Member Information</h3>
+
+      <div class="row">
+        <input type="text" placeholder="First Name" required>
+        <input type="text" placeholder="Last Name" required>
+      </div>
+
+      <div class="row">
+        <select required>
+          <option value="">Gender</option>
+          <option>Male</option>
+          <option>Female</option>
+          <option>Other</option>
+        </select>
+        <input type="date" required>
+      </div>
+
+      <input type="text" placeholder="Phone Number" required>
+      <input type="email" placeholder="Email Address" required>
+
+      <textarea placeholder="Home Address" rows="3" required></textarea>
+
+      <!-- JOIN DATE (AUTO) -->
+      <div class="join-date">
+        <label>Join Date</label>
+        <input type="text" id="joinDate" readonly>
+      </div>
+
+      <button type="submit" class="auth-btn">
+        Confirm & Pay <i class="fas fa-credit-card"></i>
+      </button>
+
+    </form>
+
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-bottom">
+    <p>© 2026 GymFirst. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="transaction.js"></script>
+
+
+</body>
+</html>

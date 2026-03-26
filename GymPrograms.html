@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GymFirst – Train With Purpose</title>
+
+  <!-- Image Icon -->
+  <link rel="icon" type="image/png" href="https://images.template.net/510312/Strength-Gym-Logo-edit-online.png">
+
+  <!-- Social Media Icon-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- CSS Files-->
+  <link rel="stylesheet" href="Gym.css">
+  <link rel ="stylesheet" href="GymProgram.css">
+
+  <style>
+    /* Additional styles for the Programs page can go here */
+    .nav-links {
+  position: relative;
+  display: flex;
+  gap: 30px;
+}
+
+.nav-indicator {
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  height: 3px;
+  width: 0;
+  background: #f10a02;
+  transition: all 0.3s ease;
+  opacity: 0;
+}
+  </style>
+</head>
+
+<body>
+ <div class="modal" id="authModal">
+  <div class="modal-content">
+
+    <span class="close-btn" id="closeModal">&times;</span>
+
+    <h2>Sign In To Proceed</h2>
+
+    <form class="auth-form">
+      <input type="text" placeholder="Username" required>
+      <input type="password" placeholder="Password" required>
+
+      
+
+      <a href="#" class="forgot">I've forgotten my details</a>
+
+      <button type="submit" class="auth-btn">
+        Sign In <i class="fas fa-sign-in-alt"></i>
+      </button>
+    </form>
+
+    <div class="divider"></div>
+
+    <p class="no-account">Don't have an account?</p>
+
+    <button class="signup-outline">Sign Up</button>
+
+  </div>
+</div>
+
+<header class="header">
+  <div class="nav-container">
+    <h2 class="logo">GYM<span>First</span></h2>
+    <ul class="nav-links">
+      <li><a href="Gymindex.html">Home</a></li>
+      <li><a href="GymPrograms.html">Programs</a></li>
+      <li><a href="trainers.html">Trainers</a></li>
+      <li><a href="Membership.html">Membership</a></li>
+      <li><a href="AboutUs.html#about">About Us</a></li>
+       <div class="nav-indicator"></div>
+    </ul>
+   
+    <div class="dropdown">
+      <a href="#" class="cta">Join Now</a>
+    </div>
+  </div>
+</header>
+
+<!-- PAGE TITLE -->
+<div style = "animation: FadeUp s ease-in;">
+  <h1 style="text-align: center; color: white; font-weight: bold; margin-top: 40px;">
+    Our Programs
+  </h1>
+</div>
+
+<!-- PROGRAMS SECTION -->
+<section class="programs-section">
+  <div class="programs-container" style = "animation: FadeUp 1.2s ease-in;">
+
+    <div class="program-card strength">
+  <div class="program-overlay">
+    <i class="fas fa-dumbbell"></i>
+    <h3>Strength Training</h3>
+    <p>Build muscle, increase power, and improve overall strength with guided workouts.</p>
+    <a href="Strengthpage.html" class="program-reveal">View Details</a>
+  </div>
+</div>
+
+    <div class="program-card cardio" style = "animation: FadeUp 1.2s ease-in;">
+    <div class="program-overlay">
+      <i class="fas fa-running"></i>
+      <h3>Cardio Fitness</h3>
+      <p>Boost endurance and burn calories through high-energy cardio sessions.</p>
+      <a href="Cardiopage.html" class="program-reveal">View Details</a>
+    </div>
+    </div>
+
+
+    <div class="program-card hiit" style = "animation: FadeUp 1.0s ease-in;">
+    <div class="program-overlay">
+      <i class="fas fa-bolt"></i>
+      <h3>HIIT Training</h3>
+      <p>High-Intensity Interval Training designed for maximum fat burn in less time.</p>
+      <a href="HIITpage.html" class="program-reveal">View Details</a>
+    </div>
+    </div> 
+
+
+    <div class="program-card yoga" style = "animation: FadeUp 0.8s ease-in;">
+    <div class="program-overlay">
+      <i class="fas fa-spa"></i>
+      <h3>Yoga & Flexibility</h3>
+      <p>Improve flexibility, balance, and mental focus with calming yoga sessions.</p>
+      <a href="Yogapage.html" class="program-reveal">View Details</a>
+    </div>
+    </div>
+
+
+    <div class="program-card personal"style = "animation: FadeUp 0.6s ease-in;">
+    <div class="program-overlay">
+      <i class="fas fa-user-check"></i>
+      <h3>Personal Training</h3>
+      <p>One-on-one customized training plans to reach your fitness goals faster.</p>
+      <a href="Personalpage.html" class="program-reveal">View Details</a>
+    </div>
+    </div>
+
+  </div>
+</section>
+
+ <!-- CONTACT FLOATING BUTTON -->
+<div class="contact-fab" id="contactFab">
+  <i class="fas fa-comment-dots"></i>
+</div>
+
+<!-- CONTACT MODAL -->
+<div class="modal" id="contactModal">
+  <div class="modal-content contact-modal">
+
+    <span class="close-btn" id="closeContact">&times;</span>
+
+    <h2>Contact Us</h2>
+    <p class="contact-sub">Have a question? Send us your inquiry.</p>
+
+    <form class="contact-form">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Email Address" required>
+      <textarea placeholder="Your Inquiry..." rows="4" required></textarea>
+
+      <button type="submit" class="auth-btn">
+        Send <i class="fas fa-paper-plane"></i>
+      </button>
+    </form>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-container">
+
+    <div class="footer-brand">
+      <h2>GYM<span>First</span></h2>
+      <p>Train with purpose. Build strength for life.</p>
+    </div>
+
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <a href="#programs">Membership</a>
+      <a href="#join">Pricing</a>
+      <a href="#contact">Contact</a>
+      <a href="AboutUs.html#about">About Us</a>
+    </div>
+
+    <div class="footer-social">
+      <h4>Follow Us</h4>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+
+    
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 GymFirst. All rights reserved.</p>
+  </div>
+</footer>
+
+ <!-- CONTACT FLOATING BUTTON -->
+<div class="contact-fab" id="contactFab">
+  <i class="fas fa-comment-dots"></i>
+</div>
+
+<!-- CONTACT MODAL -->
+<div class="modal" id="contactModal">
+  <div class="modal-content contact-modal">
+
+    <span class="close-btn" id="closeContact">&times;</span>
+
+    <h2>Contact Us</h2>
+    <p class="contact-sub">Have a question? Send us your inquiry.</p>
+
+    <form class="contact-form">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Email Address" required>
+      <textarea placeholder="Your Inquiry..." rows="4" required></textarea>
+
+      <button type="submit" class="auth-btn">
+        Send <i class="fas fa-paper-plane"></i>
+      </button>
+    </form>
+
+  </div>
+</div>
+
+<!-- SCRIPTING SECTIONS -->
+ <!-- FADEUP ANIMATION FOR EXPLORE BUTTON -->
+ <script>
+  const programGrid = document.querySelector('.program-grid');
+  const exploreBtn = document.getElementById('explore-btn');
+
+  // Function to trigger animation
+  function triggerAnimation() {
+    if (!programGrid.classList.contains('animate')) {
+      programGrid.classList.add('animate');
+    }
+  }
+
+  // 1️⃣ Trigger on scroll when it enters viewport
+  function isInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return (
+      rect.top <= window.innerHeight &&
+      rect.bottom >= 0
+    );
+  }
+
+  window.addEventListener('scroll', () => {
+    if (isInViewport(programGrid)) {
+      triggerAnimation();
+    }
+  });
+
+  // 2️⃣ Trigger on Explore button click
+  exploreBtn.addEventListener('click', (e) => {
+    e.preventDefault(); // prevent default jump
+    triggerAnimation();
+    programGrid.scrollIntoView({ behavior: 'smooth' });
+  });
+</script>
+
+
+<!-- Scrolling Animation -->
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+
+<!-- DROPDOWN SCROLLING ANIMATION-->
+<script>
+ const modal = document.getElementById("authModal");
+const openBtn = document.querySelector(".cta");
+const closeBtn = document.getElementById("closeModal");
+
+// Only attach if elements exist
+if (openBtn && modal) {
+  openBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    modal.style.display = "flex";
+  });
+}
+
+if (closeBtn && modal) {
+  closeBtn.addEventListener("click", function () {
+    modal.style.display = "none";
+  });
+}
+
+// Click outside to close
+if (modal) {
+  window.addEventListener("click", function (e) {
+    if (e.target === modal) {
+      modal.style.display = "none";
+    }
+  });
+}
+</script>
+
+<script>
+  // Select the Sign Up button
+  const signupBtn = document.querySelector(".signup-outline");
+
+  // SignUp.html click  
+  signupBtn.addEventListener("click", function() {
+    window.location.href = "SignUp.html"; // make sure this path is correct
+  });
+  
+</script>
+
+<!-- Footer Contact Us link -->
+<script>
+  const footerContact = document.getElementById("footerContact");
+
+  footerContact.addEventListener("click", function (e) {
+    e.preventDefault(); // stop scrolling
+    contactModal.style.display = "flex";
+  });
+</script>
+
+<!-- Contact Us link -->
+<script>
+  const contactFab = document.getElementById("contactFab");
+  const contactModal = document.getElementById("contactModal");
+  const closeContact = document.getElementById("closeContact");
+
+  // Open contact modal
+  contactFab.addEventListener("click", () => {
+    contactModal.style.display = "flex";
+  });
+
+  // Close contact modal
+  closeContact.addEventListener("click", () => {
+    contactModal.style.display = "none";
+  });
+
+  // Close when clicking outside
+  window.addEventListener("click", (e) => {
+    if (e.target === contactModal) {
+      contactModal.style.display = "none";
+    }
+  });
+</script>
+
+<!-- Underline Navigation Indicator Animations -->
+<script>
+  const navLinks = document.querySelectorAll(".nav-links a");
+const indicator = document.querySelector(".nav-indicator");
+const nav = document.querySelector(".nav-links");
+
+if (indicator && nav) {
+  navLinks.forEach(link => {
+    link.addEventListener("mouseenter", () => {
+      const linkRect = link.getBoundingClientRect();
+      const navRect = nav.getBoundingClientRect();
+
+      indicator.style.width = `${linkRect.width}px`;
+      indicator.style.transform = `translateX(${linkRect.left - navRect.left}px)`;
+      indicator.style.opacity = "1";
+    });
+  });
+
+  nav.addEventListener("mouseleave", () => {
+    indicator.style.opacity = "0";
+  });
+}
+</script>
+
+
+</body>
+</html>

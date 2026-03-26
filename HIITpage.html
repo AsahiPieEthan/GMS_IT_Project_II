@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HIIT – GymFirst</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="Gym.css">
+  <link rel="stylesheet" href="GymProgram.css">
+
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #1c1c1c;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* ===== PROGRAM HERO ===== */
+    .program-hero {
+      height: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      position: relative;
+      background: url('https://foreverfitscience.com/wp-content/uploads/2018/06/ropes-training.jpg') center/cover no-repeat;
+      background-color: #111; /* fallback */
+    }
+
+    /* Overlay */
+    .program-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0,0,0,0.6);
+      z-index: 0;
+    }
+
+    .program-hero h1,
+    .program-hero p {
+      position: relative;
+      z-index: 1;
+      color: #fff;
+      margin: 0;
+    }
+
+    .program-hero h1 {
+      font-size: 2.2rem; /* smaller to avoid menu clutter */
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 8px #000;
+    }
+
+    .program-hero p {
+      font-size: 1rem;
+      max-width: 600px;
+    }
+
+    .program-content {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .program-section {
+      margin-bottom: 30px;
+    }
+
+    .program-section h2 {
+      font-size: 2em;
+      margin-bottom: 15px;
+      border-bottom: 2px solid  #f10a02;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+
+    .program-section ul {
+      list-style: disc;
+      padding-left: 20px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background-color:  #f10a02;
+      color: #fff;
+      padding: 15px 30px;
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 5px;
+      transition: background 0.3s;
+      margin-top: 20px;
+    }
+
+    .cta-button:hover {
+      background-color: #ff4c4c;
+    }
+
+    .back-link {
+      display: block;
+      margin-top: 30px;
+      color: #fff;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body style="animation: FadeUp 0.4s ease;">
+
+   <div class="modal" id="authModal">
+  <div class="modal-content">
+
+    <span class="close-btn" id="closeModal">&times;</span>
+
+    <h2>Sign In To Proceed</h2>
+
+    <form class="auth-form">
+      <input type="text" placeholder="Username" required>
+      <input type="password" placeholder="Password" required>
+
+      
+
+      <a href="#" class="forgot">I've forgotten my details</a>
+
+      <button type="submit" class="auth-btn">
+        Sign In <i class="fas fa-sign-in-alt"></i>
+      </button>
+    </form>
+
+    <div class="divider"></div>
+
+    <p class="no-account">Don't have an account?</p>
+
+    <button class="signup-outline">Sign Up</button>
+
+  </div>
+</div> 
+
+<header class="header">
+  <div class="nav-container">
+    <h2 class="logo">GYM<span>First</span></h2>
+    <ul class="nav-links">
+      <li><a href="Gymindex.html">Home</a></li>
+      <li><a href="GymPrograms.html">Programs</a></li>
+      <li><a href="trainers.html">Trainers</a></li>
+      <li><a href="Membership.html">Membership</a></li>
+    </ul>
+    <div class="dropdown">
+      <a href="#" class="cta">Join Now</a>
+    </div>
+  </div>
+</header>
+
+<!-- Hero Banner -->
+<section class="program-hero">
+  <h1>HIIT (High-Intensity Interval Training)</h1>
+  <p>Burn fat fast, improve endurance, and challenge your limits with intense, time-efficient interval workouts.</p>
+</section>
+
+<!-- Program Content -->
+<section class="program-content">
+
+  <!-- Goals -->
+  <div class="program-section">
+    <h2>Program Goals</h2>
+    <ul>
+      <li>Increase cardiovascular fitness</li>
+      <li>Burn maximum calories in minimal time</li>
+      <li>Build strength, speed, and agility</li>
+    </ul>
+  </div>
+
+  <!-- Benefits -->
+  <div class="program-section">
+    <h2>Benefits</h2>
+    <ul>
+      <li>Efficient, high-intensity fat-burning workouts</li>
+      <li>Improves metabolism for hours after exercise</li>
+      <li>Boosts energy, stamina, and overall fitness</li>
+      <li>Structured routines suitable for all fitness levels</li>
+    </ul>
+  </div>
+
+  <!-- Who It’s For -->
+  <div class="program-section">
+    <h2>Who Is This Program For?</h2>
+    <ul>
+      <li>Individuals short on time but seeking maximum results</li>
+      <li>Fitness enthusiasts looking to push limits</li>
+      <li>Anyone aiming to burn fat and improve athletic performance</li>
+    </ul>
+  </div>
+
+  <!-- CTA -->
+  <a href="Membership.html" class="cta-button">Join HIIT Program Now</a>
+
+  <a href="GymPrograms.html" class="back-link">&larr; Back to Programs</a>
+</section>
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <h2>GYM<span>First</span></h2>
+      <p>Train with purpose. Build strength for life.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <a href="#programs">Membership</a>
+      <a href="#join">Pricing</a>
+      <a href="#contact">Contact</a>
+      <a href="#about">About Us</a>
+    </div>
+    <div class="footer-social">
+      <h4>Follow Us</h4>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 GymFirst. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>

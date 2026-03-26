@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GymFirst – Train With Purpose</title>
+
+  <!-- Image Icon -->
+  <link rel = "icon" type = "image/png" href = "https://images.template.net/510312/Strength-Gym-Logo-edit-online.png">
+
+  <!-- Social Media Icon-->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- CSS Files-->
+   <link rel="stylesheet" href="Gym.css">
+   <link rel ="stylesheet" href="AboutUs.css">
+
+</head>
+
+<body>
+
+  <div class="modal" id="authModal">
+  <div class="modal-content">
+
+    <span class="close-btn" id="closeModal">&times;</span>
+
+    <h2>Sign In To Proceed</h2>
+
+    <form class="auth-form">
+      <input type="text" placeholder="Username" required>
+      <input type="password" placeholder="Password" required>
+
+      
+
+      <a href="#" class="forgot">I've forgotten my details</a>
+
+      <button type="submit" class="auth-btn">
+        Sign In <i class="fas fa-sign-in-alt"></i>
+      </button>
+    </form>
+
+    <div class="divider"></div>
+
+    <p class="no-account">Don't have an account?</p>
+
+    <button class="signup-outline">Sign Up</button>
+
+  </div>
+</div>
+
+<header class="header">
+  <div class="nav-container">
+    <h2 class="logo">GYM<span>First</span></h2>
+    <ul class="nav-links">
+      <li><a href="Gymindex.html">Home</a></li>
+      <li><a href="GymPrograms.html">Programs</a></li>
+      <li><a href="trainers.html">Trainers</a></li>
+      <li><a href="Membership.html">Membership</a></li>
+      <li><a href="AboutUs.html#about">About Us</a></li>
+      <div class="nav-indicator"></div>
+    </ul>
+    <div class="dropdown">
+    <a href="#" class="cta">Join Now</a>
+    </div>
+  </div>
+</header>
+
+<!-- ABOUT US SECTION -->
+<section class="about-section" id="about" style="animation: FadeUp 3.0s ease">
+
+  <!-- ROW 1 -->
+  <div class="about-row" style="animation: FadeUp 1.5s ease">
+    <div class="about-text">
+      <h1>About Us</h1>
+      <p>
+        At GymFirst, we are dedicated to empowering individuals to achieve their fitness goals
+        through personalized training programs, expert guidance, and a supportive community.
+      </p>
+    </div>
+    <div class="about-image">
+      <img src="https://tse3.mm.bing.net/th/id/OIP.pItGUkR6HaPXJ6lSqU1I2AHaEO?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Gym Interior">
+    </div>
+  </div>
+
+  <!-- ROW 2 (REVERSED) -->
+  <div class="about-row reverse" style="animation: FadeUp 1.0s ease">
+    <div class="about-text">
+      <h1>Our Mission & Philosophy</h1>
+      <p>
+        Our mission is to help Ipoh residents achieve their fitness goals in a welcoming and
+        supportive environment. We believe fitness should be accessible, fun, and effective
+        for everyone.
+      </p>
+    </div>
+    <div class="about-image">
+      <img src="https://www.sessionlab.com/wp-content/uploads/campaign-creators-gMsnXqILjp4-unsplash.jpg" alt="Training Session">
+    </div>
+  </div>
+
+  <!-- ROW 3 -->
+  <div class="about-row" style="animation: FadeUp 0.5s ease">
+    <div class="about-text">
+      <h1>What Makes Us Different</h1>
+      <p>
+        Our team of certified trainers, nutritionists, and wellness experts are passionate
+        about helping members grow stronger—physically and mentally.
+      </p>
+    </div>
+    <div class="about-image">
+      <img src="https://formativefitness.com/wp-content/uploads/2018/12/personal-trainer-stock-photo.jpg" alt="Personal Trainer">
+    </div>
+  </div>
+   
+
+  <div class="homepage-btn">
+    <a href="Gymindex.html" class="btn"> ← Back to Home</a>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- BRAND INFO -->
+    <div class="footer-brand">
+      <h2>GYM<span>First</span></h2>
+      <p>Train with purpose. Build strength for life.</p>
+    </div>
+
+    <!-- QUICK LINKS -->
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <a href="Membership.html">Membership</a>
+      <a href="#join">Pricing</a>
+      <a href="#" id="footerContact">Contact Us</a>
+      <a href="#about">About Us</a>
+    </div>
+
+    <!-- SOCIAL ICONS -->
+    <div class="footer-social">
+      <h4>Follow Us</h4>
+      <div class="social-icons">
+        <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 GymFirst. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- SCRIPT -->
+ <!-- Scrolling Animation -->
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+
+<!-- Underline Navigation Indicator Animations -->
+<script>
+  const navLinks = document.querySelectorAll(".nav-links a");
+const indicator = document.querySelector(".nav-indicator");
+const nav = document.querySelector(".nav-links");
+
+if (indicator && nav) {
+  navLinks.forEach(link => {
+    link.addEventListener("mouseenter", () => {
+      const linkRect = link.getBoundingClientRect();
+      const navRect = nav.getBoundingClientRect();
+
+      indicator.style.width = `${linkRect.width}px`;
+      indicator.style.transform = `translateX(${linkRect.left - navRect.left}px)`;
+      indicator.style.opacity = "1";
+    });
+  });
+
+  nav.addEventListener("mouseleave", () => {
+    indicator.style.opacity = "0";
+  });
+}
+</script>
+
+
+ <!-- CONTACT FLOATING BUTTON -->
+<div class="contact-fab" id="contactFab">
+  <i class="fas fa-comment-dots"></i>
+</div>
+
+<!-- CONTACT MODAL -->
+<div class="modal" id="contactModal">
+  <div class="modal-content contact-modal">
+
+    <span class="close-btn" id="closeContact">&times;</span>
+
+    <h2>Contact Us</h2>
+    <p class="contact-sub">Have a question? Send us your inquiry.</p>
+
+    <form class="contact-form">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Email Address" required>
+      <textarea placeholder="Your Inquiry..." rows="4" required></textarea>
+
+      <button type="submit" class="auth-btn">
+        Send <i class="fas fa-paper-plane"></i>
+      </button>
+    </form>
+
+  </div>
+</div>
+
+<!-- Contact Us link -->
+<script>
+  const contactFab = document.getElementById("contactFab");
+  const contactModal = document.getElementById("contactModal");
+  const closeContact = document.getElementById("closeContact");
+
+  // Open contact modal
+  contactFab.addEventListener("click", () => {
+    contactModal.style.display = "flex";
+  });
+
+  // Close contact modal
+  closeContact.addEventListener("click", () => {
+    contactModal.style.display = "none";
+  });
+
+  // Close when clicking outside
+  window.addEventListener("click", (e) => {
+    if (e.target === contactModal) {
+      contactModal.style.display = "none";
+    }
+  });
+</script>
+
+<!-- DROPDOWN SCROLLING ANIMATION-->
+<script>
+ const modal = document.getElementById("authModal");
+const openBtn = document.querySelector(".cta");
+const closeBtn = document.getElementById("closeModal");
+
+// Only attach if elements exist
+if (openBtn && modal) {
+  openBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    modal.style.display = "flex";
+  });
+}
+
+if (closeBtn && modal) {
+  closeBtn.addEventListener("click", function () {
+    modal.style.display = "none";
+  });
+}
+
+// Click outside to close
+if (modal) {
+  window.addEventListener("click", function (e) {
+    if (e.target === modal) {
+      modal.style.display = "none";
+    }
+  });
+}
+</script>
+
+<script>
+  // Select the Sign Up button
+  const signupBtn = document.querySelector(".signup-outline");
+
+  // SignUp.html click  
+  signupBtn.addEventListener("click", function() {
+    window.location.href = "SignUp.html"; // make sure this path is correct
+  });
+  
+</script>
+
+
+
+</body>

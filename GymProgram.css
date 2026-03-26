@@ -1,0 +1,157 @@
+/* ===== PROGRAM CARDS ===== */
+.programs-section {
+  padding: 4rem 2rem;
+  background: var(--bg-dark);
+}
+
+.program-grid {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+  gap: 2rem;
+}
+
+.program-card {
+  background: var(--bg-light);
+  padding: 2rem;
+  border-radius: 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.program-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.program-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.program-card p {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #d1d1d1;
+
+  max-width: 260px;
+  margin-bottom: auto; /* PUSH BUTTON TO BOTTOM */
+}
+
+.program-card a {
+  margin-top: 18px;
+}
+
+/* GRID */
+.program-grid {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+/* CARD */
+.program-card {
+  position: relative;
+  height: 360px;
+  border-radius: 16px;
+  overflow: hidden;
+
+  background-size: cover;
+  background-position: center;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  transition: transform 0.3s ease;
+}
+/* IMAGE */
+.program-card img {
+  width: 100%;
+  height: 150px;                  /* FIXED IMAGE HEIGHT */
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 14px;
+  flex-shrink: 0;
+}
+/* IMAGE Darken */
+.program-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+}
+
+/* Background Images */
+.program-card.strength {
+  background-image: url("https://media.istockphoto.com/id/1126509424/photo/caucasian-muscular-man-kneeling-and-clapping-hands-in-front-of-him-barbell-in-background.jpg?s=612x612&w=0&k=20&c=C_QzJXN46pS4ii4lUv_-mPjuUhBEqlm3h1FrGFEIqXk=");
+}
+
+.program-card.cardio {
+  background-image: url("https://media.istockphoto.com/id/882815206/photo/man-running-at-the-gym.jpg?s=612x612&w=0&k=20&c=hYl2UlySVqc6wRDWFEAal4mXEY_5CzQCsiKAGhef4z0=");
+}
+
+.program-card.hiit {
+  background-image: url("https://foreverfitscience.com/wp-content/uploads/2018/06/ropes-training.jpg");
+}
+
+.program-card.yoga {
+  background-image: url("https://t3.ftcdn.net/jpg/03/30/49/72/360_F_330497250_ZzWZ6qrLWJ973kgTLI2foKjDoLBtIPbi.jpg");
+}
+
+.program-card.personal {
+  background-image: url("https://mightysites.com/storage/7-Things-Your-Personal-Training-Website-Should-Include.jpg");
+}
+
+/* TITLE */
+.program-card h3 {
+  margin: 0 0 8px;
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+/* TEXT */
+.program-card p {
+  font-size: 0.95rem;
+  color: #bbb;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;          /* FIXED TEXT HEIGHT */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Programs (View Details) Button */
+.program-reveal {
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(90deg, #ff4d00 0%, #ff4d00 100%);
+  background-size: 0% 100%;
+  background-repeat: no-repeat;
+  padding: 4px 10px;
+  transition: background-size 0.3s ease;
+  text-decoration: none;
+ 
+}
+/* Hover effect */
+.program-reveal:hover {
+  background-size: 100% 100%;
+}
+
+/* Icon animation */
+.program-btn-sm i {
+  font-size: 11px;
+  transition: transform 0.25s ease;
+}
+
+.program-btn-sm:hover i {
+  transform: translateX(3px);
+}
+

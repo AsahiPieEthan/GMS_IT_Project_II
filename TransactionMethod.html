@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment | GymFirst</title>
+
+  <!-- Icon -->
+  <link rel="icon" type="image/png" href="https://images.template.net/510312/Strength-Gym-Logo-edit-online.png">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="Gym.css">
+  <link rel="stylesheet" href="TransactionMethod.css">
+</head>
+
+<body style="font-family: Fjalla One, sans-serif;">
+
+<!-- HEADER -->
+<header class="header">
+  <div class="nav-container">
+    <h2 class="logo">GYM<span>First</span></h2>
+    <ul class="nav-links">
+      <li><a href="Gymindex.html">Home</a></li>
+      <li><a href="GymPrograms.html">Programs</a></li>
+      <li><a href="trainers.html">Trainers</a></li>
+      <li><a href="Membership.html">Membership</a></li>
+      <li><a href="AboutUs.html#about">About Us</a></li>
+      <span class="nav-indicator"></span>
+    </ul>
+    <a href="Membership.html#join" class="cta">Join Now</a>
+  </div>
+</header>
+
+<!-- PAYMENT SECTION -->
+<section class="transaction-section">
+  <div class="transaction-container">
+
+    <!-- PAYMENT METHOD -->
+    <h2 id="methodTitle" class="payment-title">Payment Method</h2>
+
+    <!-- PLAN SUMMARY -->
+    <div class="plan-summary">
+      <div class="plan-row">
+        <span>Plan</span>
+        <strong id="planName">Selected Plan</strong>
+      </div>
+      <div class="plan-row">
+        <span>Price</span>
+        <strong id="planPrice">$0</strong>
+      </div>
+      <div class="plan-row">
+        <span>Membership Duration</span>
+        <strong id="planDuration">1 Month</strong>
+      </div>
+      <div class="plan-row">
+        <span>Valid Until</span>
+        <strong id="validTill">-- / -- / ----</strong>
+      </div>
+    </div>
+
+    <!-- QR PAYMENT -->
+    <div class="qr-box">
+      <h3>Scan to Pay</h3>
+
+      <img
+        src="QR_GMS.jpeg"
+        alt="Payment QR Code"
+        class="qr-image"
+      >
+
+      <p id="methodInfo" class="payment-info">
+        Please scan the QR code using your selected payment method.
+      </p>
+
+      <button class="auth-btn">
+        Confirm Payment <i class="fas fa-check-circle"></i>
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <h2>GYM<span>First</span></h2>
+      <p>Train with purpose. Build strength for life.</p>
+    </div>
+
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <a href="#">Membership</a>
+      <a href="#">Pricing</a>
+      <a href="#">Contact</a>
+      <a href="AboutUs.html#about">About Us</a>
+    </div>
+
+    <div class="footer-social">
+      <h4>Follow Us</h4>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 GymFirst. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- SCRIPT -->
+<!-- PLAN & PAYMENT LOGIC -->
+<script>
+  const params = new URLSearchParams(window.location.search);
+
+  const plan = params.get("plan");
+  const price = params.get("price");
+  const duration = params.get("duration");
+  const method = params.get("method");
+
+  const planName = document.getElementById("planName");
+  const planPrice = document.getElementById("planPrice");
+  const planDuration = document.getElementById("planDuration");
+  const validTill = document.getElementById("validTill");
+  const methodInfo = document.getElementById("methodInfo");
+
+  // PLAN NAME
+  if (plan) {
+    planName.textContent =
+      plan.charAt(0).toUpperCase() + plan.slice(1) + " Plan";
+  }
+
+  // PRICE
+  if (price) {
+    planPrice.textContent = "RM " + price;
+  }
+
+  // DURATION + EXPIRY
+  if (duration) {
+    planDuration.textContent = duration;
+
+    const today = new Date();
+    const endDate = new Date(today);
+
+    if (duration.includes("Month")) {
+      endDate.setMonth(today.getMonth() + 1);
+    }
+
+    if (duration.includes("Year")) {
+      endDate.setFullYear(today.getFullYear() + 1);
+    }
+
+    validTill.textContent = endDate.toDateString();
+  }
+
+  // PAYMENT METHOD MESSAGE
+  if (method === "cash") {
+    methodInfo.textContent =
+      "Please visit the GymFirst front desk to complete your payment in cash.";
+  }
+
+  if (method === "tng") {
+    methodInfo.textContent =
+      "Scan the Touch ’n Go QR code to complete your payment.";
+  }
+
+  if (method === "grab") {
+    methodInfo.textContent =
+      "Use GrabPay on your mobile device to complete the transaction securely.";
+  }
+</script>
+
+</body>
+</html>

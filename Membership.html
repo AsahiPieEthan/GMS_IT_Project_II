@@ -1,0 +1,387 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+       <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Membership Pages</title>
+  <!-- Image Icon -->
+  <link rel = "icon" type = "image/png" href = "https://images.template.net/510312/Strength-Gym-Logo-edit-online.png">
+
+  <!-- Social Media Icon-->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Alternative font-->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fjalla+One&family=MedievalSharp&family=Oswald:wght@200..700&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+  <!-- CSS Files-->
+   <link rel="stylesheet" href="Gym.css">
+
+    </head>
+
+    <body style = "font-family:fjalla one, sans-serif;">
+
+       <div class="modal" id="authModal">
+  <div class="modal-content">
+
+    <span class="close-btn" id="closeModal">&times;</span>
+
+    <h2>Sign In To Proceed</h2>
+
+    <form class="auth-form">
+      <input type="text" placeholder="Username" required>
+      <input type="password" placeholder="Password" required>
+
+      
+
+      <a href="#" class="forgot">I've forgotten my details</a>
+
+      <button type="submit" class="auth-btn">
+        Sign In <i class="fas fa-sign-in-alt"></i>
+      </button>
+    </form>
+
+    <div class="divider"></div>
+
+    <p class="no-account">Don't have an account?</p>
+
+    <button class="signup-outline">Sign Up</button>
+
+  </div>
+</div>
+
+      <header class="header">
+  <div class="nav-container">
+    <h2 class="logo">GYM<span>First</span></h2>
+    <ul class="nav-links">
+      <li><a href="Gymindex.html">Home</a></li>
+      <li><a href="GymPrograms.html">Programs</a></li>
+      <li><a href="trainers.html">Trainers</a></li>
+      <li><a href="Membership.html">Membership</a></li>
+      <li><a href="AboutUs.html#about">About Us</a></li>
+
+      <span class="nav-indicator"></span>
+    </ul>
+    <a href="Membership.html#join" class="cta">Join Now</a>
+  </div>
+</header>
+
+    <!-- PRICING SECTION -->
+
+<section class="pricing-section" id="join" style="animation: FadeUp 0.5s ease">
+  <h2 class="section-title">Membership Pricing</h2>
+    <p class = "section-text"> Chase Fitness, Build Strength, and Grind <br> with our exclusive subscriptions with various benefits</p>
+    <h3 class="section-title"> Monthly Subscriptions</h1>
+  <div class="pricing-grid">
+    <!-- Basic Plan -->
+    <div class="price-card" style="animation: FadeUp 2s ease">
+      <h2>RM59<span>/month</span></h2>
+      <h3>Basic Plan</h3>
+      <ul>
+        <li>Unlimited Gym Access</li>
+        <li>Free Wi-Fi</li>
+        <li>1 Guest Pass/Month</li>
+      </ul>
+       <a href="Transaction.html?plan=basic" class="join-btn">Join Now</a>
+    </div>
+
+    <!-- Pro Plan (highlighted) -->
+    <div class="price-card featured" style="animation: FadeUp 4s ease">
+      <h2>RM89<span>/month</span></h2>
+      <h3>Pro Plan</h3>
+      <ul>
+        <li>Everything in Basic</li>
+        <li>Access to Premium Equipment</li>
+        <li>Group Classes & Workshops</li>
+        <li>Personal Trainer Consultation</li>
+      </ul>
+       <a href="Transaction.html?plan=pro" class="join-btn">Join Now</a>
+    </div>
+
+    <!-- Elite Plan -->
+    <div class="price-card" style="animation: FadeUp 5s ease">
+      <h2>RM109<span>/month</span></h2>
+      <h3>Elite Plan</h3>
+      <ul>
+        <li>Everything in Pro</li>
+        <li>1-on-1 Personal Training</li>
+        <li>Nutrition & Meal Plan</li>
+        <li>Priority Booking & VIP Access</li>
+      </ul>
+      <a href="Transaction.html?plan=elite" class="join-btn">Join Now</a>
+    </div>
+  </div>
+</section>
+
+<!-- LONG TERM SUBSCRIPTION SECTION -->
+<section class="subscription-section" id="subscriptions" style="animation: FadeUp 0.5s ease">
+  <h2 class="section-title">Long-Term Membership Plans</h2>
+  <p class="section-text">
+    Commit to your fitness goals and save more with our long-term subscriptions.
+  </p>
+
+  <div class="pricing-grid">
+
+    <!-- 6 Month Plan -->
+    <div class="price-card">
+      <h2>RM249<span>/6 months</span></h2>
+      <h3>6-Month Plan</h3>
+      <ul>
+        <li>Unlimited Gym Access</li>
+        <li>Free Wi-Fi</li>
+        <li>Access to Group Classes</li>
+        <li>Save up to 15%</li>
+      </ul>
+      <a href="#" class="price-btn">Join Now</a>
+    </div>
+
+    <!-- 12 Month Plan (Best Value) -->
+    <div class="price-card featured">
+
+      <!-- BEST VALUE LABEL -->
+      <div class="best-value-badge">Best Value</div>
+
+      <h2>RM449<span>/year</span></h2>
+      <h3>12-Month Plan</h3>
+      <ul>
+        <li>All Gym Access Included</li>
+        <li>Premium Equipment</li>
+        <li>Free Personal Training Session</li>
+        <li>Save up to 30%</li>
+      </ul>
+
+      <!-- JOIN BUTTON AT BOTTOM -->
+      <a href="#" class="price-btn">Join Now</a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ABOUT US -->
+<section class="about-section">
+  <div class="about-bg"></div>
+  <div class="about-overlay"></div>
+
+  <div class="about-content">
+    <h2 class="section-title">About Us</h2>
+    <h3> Who we are and What we stand for</h3>
+    <p class="section-text">
+         At GymFirst, we go beyond fitness to support your full wellness journey.
+    </p>
+    <a href="AboutUs.html#about" class="about-btn">Learn More</a>
+  </div>
+</section>
+
+
+<!-- WHY CHOOSE US SECTION -->
+<section class="why-choose-us" id="why">
+  <div class="container">
+    <h2 class="section-title">Why Choose Us?</h2>
+    <p class="section-text">At GymFirst, we go beyond fitness. Here’s why our members love training with us:</p>
+    
+    <div class="features-grid">
+      <div class="feature-card">
+        <i class="fas fa-dumbbell fa-2x"></i>
+        <h3>Top-notch Equipment</h3>
+        <p>Modern machines and free weights to suit all levels of training.</p>
+      </div>
+      
+      <div class="feature-card">
+        <i class="fas fa-users fa-2x"></i>
+        <h3>Expert Trainers</h3>
+        <p>Certified trainers to guide you and customize your workout plan.</p>
+      </div>
+      
+      <div class="feature-card">
+        <i class="fas fa-heartbeat fa-2x"></i>
+        <h3>Wellness Programs</h3>
+        <p>From nutrition plans to group classes, we cover all aspects of health.</p>
+      </div>
+      
+      <div class="feature-card">
+        <i class="fas fa-star fa-2x"></i>
+        <h3>Community & Support</h3>
+        <p>Friendly and motivating environment to keep you inspired every day.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+ <!-- CONTACT FLOATING BUTTON -->
+<div class="contact-fab" id="contactFab">
+  <i class="fas fa-comment-dots"></i>
+</div>
+
+<!-- CONTACT MODAL -->
+<div class="modal" id="contactModal">
+  <div class="modal-content contact-modal">
+
+    <span class="close-btn" id="closeContact">&times;</span>
+
+    <h2>Contact Us</h2>
+    <p class="contact-sub">Have a question? Send us your inquiry.</p>
+
+    <form class="contact-form">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Email Address" required>
+      <textarea placeholder="Your Inquiry..." rows="4" required></textarea>
+
+      <button type="submit" class="auth-btn">
+        Send <i class="fas fa-paper-plane"></i>
+      </button>
+    </form>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- BRAND INFO -->
+    <div class="footer-brand">
+      <h2>GYM<span>First</span></h2>
+      <p>Train with purpose. Build strength for life.</p>
+    </div>
+
+    <!-- QUICK LINKS -->
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <a href="#Membership">Membership</a>
+      <a href="#join">Pricing</a>
+      <a href="#contact">Contact</a>
+      <a href="AboutUs.html#about">About Us</a>
+    </div>
+
+    <!-- SOCIAL ICONS -->
+    <div class="footer-social">
+      <h4>Follow Us</h4>
+      <div class="social-icons">
+        <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 GymFirst. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Scrolling Animation -->
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+
+<!-- DROPDOWN SCROLLING ANIMATION-->
+<script>
+ const modal = document.getElementById("authModal");
+const openBtn = document.querySelector(".cta");
+const closeBtn = document.getElementById("closeModal");
+
+// Only attach if elements exist
+if (openBtn && modal) {
+  openBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    modal.style.display = "flex";
+  });
+}
+
+if (closeBtn && modal) {
+  closeBtn.addEventListener("click", function () {
+    modal.style.display = "none";
+  });
+}
+
+// Click outside to close
+if (modal) {
+  window.addEventListener("click", function (e) {
+    if (e.target === modal) {
+      modal.style.display = "none";
+    }
+  });
+}
+</script>
+
+<script>
+  // Select the Sign Up button
+  const signupBtn = document.querySelector(".signup-outline");
+
+  // SignUp.html click  
+  signupBtn.addEventListener("click", function() {
+    window.location.href = "SignUp.html"; // make sure this path is correct
+  });
+  
+</script>
+
+<!-- Footer Contact Us link -->
+<script>
+  const footerContact = document.getElementById("footerContact");
+
+  footerContact.addEventListener("click", function (e) {
+    e.preventDefault(); // stop scrolling
+    contactModal.style.display = "flex";
+  });
+</script>
+
+<!-- Contact Us link -->
+<script>
+  const contactFab = document.getElementById("contactFab");
+  const contactModal = document.getElementById("contactModal");
+  const closeContact = document.getElementById("closeContact");
+
+  // Open contact modal
+  contactFab.addEventListener("click", () => {
+    contactModal.style.display = "flex";
+  });
+
+  // Close contact modal
+  closeContact.addEventListener("click", () => {
+    contactModal.style.display = "none";
+  });
+
+  // Close when clicking outside
+  window.addEventListener("click", (e) => {
+    if (e.target === contactModal) {
+      contactModal.style.display = "none";
+    }
+  });
+</script>
+
+<!-- Underline Navigation Indicator Animations -->
+<script>
+  const navLinks = document.querySelectorAll(".nav-links a");
+  const indicator = document.querySelector(".nav-indicator");
+  const nav = document.querySelector(".nav-links");
+
+  navLinks.forEach(link => {
+    link.addEventListener("mouseenter", () => {
+      const linkRect = link.getBoundingClientRect();
+      const navRect = nav.getBoundingClientRect();
+
+      indicator.style.width = `${linkRect.width}px`;
+      indicator.style.transform = `translateX(${linkRect.left - navRect.left}px)`;
+      indicator.style.opacity = "1";
+    });
+  });
+
+  nav.addEventListener("mouseleave", () => {
+    indicator.style.opacity = "0";
+  });
+</script>
+    </body>
+    </html>
