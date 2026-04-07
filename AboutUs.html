@@ -139,9 +139,8 @@
     <div class="footer-links">
       <h4>Quick Links</h4>
       <a href="Membership.html">Membership</a>
-      <a href="#join">Pricing</a>
       <a href="#" id="footerContact">Contact Us</a>
-      <a href="#about">About Us</a>
+      <a href="AboutUs.html#about">About Us</a>
     </div>
 
     <!-- SOCIAL ICONS -->
@@ -197,6 +196,15 @@ if (indicator && nav) {
 }
 </script>
 
+<!-- Footer Contact Us link -->
+<script>
+  const footerContact = document.getElementById("footerContact");
+
+  footerContact.addEventListener("click", function (e) {
+    e.preventDefault(); // stop scrolling
+    contactModal.style.display = "flex";
+  });
+</script>
 
  <!-- CONTACT FLOATING BUTTON -->
 <div class="contact-fab" id="contactFab">
@@ -248,6 +256,7 @@ if (indicator && nav) {
     }
   });
 </script>
+
 
 <!-- DROPDOWN SCROLLING ANIMATION-->
 <script>

@@ -264,9 +264,8 @@
     <!-- QUICK LINKS -->
     <div class="footer-links">
       <h4>Quick Links</h4>
-      <a href="#Membership">Membership</a>
-      <a href="#join">Pricing</a>
-      <a href="#contact">Contact</a>
+      <a href="Membership.html">Membership</a>
+      <a href="#" id="footerContact">Contact Us</a>
       <a href="AboutUs.html#about">About Us</a>
     </div>
 
@@ -536,14 +535,6 @@ if (modal) {
     });
   });
 </script>
-```
-
-The key difference is — when logged out, it just **navigates directly** to `Transaction.html` via `data-href`. No login modal needed here because new users registering don't have an account yet.
-
-The login modal (`auth.js`) is only for the **header "Join Now"** button, not the plan buttons on the membership page. These are two different things:
-```
-Header "Join Now"     → opens login modal (for existing users)
-Plan "Join Now" cards → goes to Transaction.html (for new users)
 
 <!-- Login Authentication -->
 <script src="auth.js"></script>
