@@ -3,26 +3,74 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Payment | GymFirst</title>
-
-  <!-- Icon -->
+  <title>Payment Method | GymFirst</title>
   <link rel="icon" type="image/png" href="https://images.template.net/510312/Strength-Gym-Logo-edit-online.png">
-
-  <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
-
-  <!-- CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Fjalla+One&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="Gym.css">
   <link rel="stylesheet" href="TransactionMethod.css">
+  <link rel="stylesheet" href="auth.css">
+  <style>
+    .payment-title {
+      text-align: center; font-size: 2rem;
+      margin-bottom: 1.5rem; letter-spacing: 2px;
+    }
+
+    /* Plan summary box */
+    .plan-summary {
+      background: #111; border: 1px solid #222;
+      border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem;
+    }
+    .plan-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.55rem 0; border-bottom: 1px solid #1e1e1e;
+      font-family: 'Montserrat', sans-serif; font-size: 0.88rem; color: #aaa;
+    }
+    .plan-row:last-child { border-bottom: none; }
+    .plan-row strong { color: #e63946; }
+
+    /* Payment method grid */
+    .method-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 0.8rem; margin: 1.2rem 0;
+    }
+
+    .pay-method-btn {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 0.5rem; padding: 1rem 0.5rem;
+      background: #111; border: 2px solid #1e1e1e;
+      border-radius: 14px; cursor: pointer; color: #aaa;
+      font-family: 'Montserrat', sans-serif; font-size: 0.72rem;
+      letter-spacing: 0.5px; transition: all 0.2s;
+    }
+    .pay-method-btn:hover  { border-color: #e63946; color: #fff; transform: translateY(-2px); }
+    .pay-method-btn.selected { border-color: #e63946; background: #1a0505; color: #fff; }
+    .pay-method-btn img { width: 36px; height: 36px; object-fit: contain; border-radius: 8px; }
+    .pay-method-btn i   { font-size: 1.6rem; color: #e63946; }
+
+    .selected-label {
+      text-align: center; font-family: 'Montserrat', sans-serif;
+      font-size: 0.82rem; color: #555; margin-bottom: 1rem; min-height: 1.2rem;
+    }
+    .selected-label span { color: #e63946; font-weight: 600; }
+
+    /* Confirm button — grey until method selected */
+    .confirm-btn {
+      width: 100%; padding: 1rem;
+      background: transparent; border: 2px solid #333;
+      color: #555; font-family: 'Fjalla One', sans-serif;
+      font-size: 1rem; letter-spacing: 2px; border-radius: 50px;
+      cursor: not-allowed; transition: all 0.3s; margin-top: 0.5rem;
+    }
+    .confirm-btn.ready {
+      border-color: #e63946; color: #e63946; cursor: pointer;
+    }
+    .confirm-btn.ready:hover { background: #e63946; color: #fff; }
+  </style>
 </head>
 
-<body style="font-family: Fjalla One, sans-serif;">
+<body style="font-family: 'Fjalla One', sans-serif;">
 
-<!-- HEADER -->
 <header class="header">
   <div class="nav-container">
     <h2 class="logo">GYM<span>First</span></h2>
@@ -32,152 +80,124 @@
       <li><a href="trainers.html">Trainers</a></li>
       <li><a href="Membership.html">Membership</a></li>
       <li><a href="AboutUs.html#about">About Us</a></li>
+
       <span class="nav-indicator"></span>
     </ul>
-    <a href="Membership.html#join" class="cta">Join Now</a>
+    <div class="dropdown">
+    <div id="ctaArea"></div>
+     <!-- <a href="#" class="cta">Join Now</a> -->
+    </div>
   </div>
 </header>
 
-<!-- PAYMENT SECTION -->
 <section class="transaction-section">
   <div class="transaction-container">
 
-    <!-- PAYMENT METHOD -->
-    <h2 id="methodTitle" class="payment-title">Payment Method</h2>
+    <h2 class="payment-title">CHOOSE PAYMENT</h2>
 
-    <!-- PLAN SUMMARY -->
+    <!-- PLAN SUMMARY — filled from localStorage -->
     <div class="plan-summary">
-      <div class="plan-row">
-        <span>Plan</span>
-        <strong id="planName">Selected Plan</strong>
-      </div>
-      <div class="plan-row">
-        <span>Price</span>
-        <strong id="planPrice">$0</strong>
-      </div>
-      <div class="plan-row">
-        <span>Membership Duration</span>
-        <strong id="planDuration">1 Month</strong>
-      </div>
-      <div class="plan-row">
-        <span>Valid Until</span>
-        <strong id="validTill">-- / -- / ----</strong>
-      </div>
+      <div class="plan-row"><span>Plan</span>      <strong id="planName">—</strong></div>
+      <div class="plan-row"><span>Price</span>     <strong id="planPrice">—</strong></div>
+      <div class="plan-row"><span>Duration</span>  <strong id="planDuration">—</strong></div>
+      <div class="plan-row"><span>Valid Until</span><strong id="validTill">—</strong></div>
     </div>
 
-    <!-- QR PAYMENT -->
-    <div class="qr-box">
-      <h3>Scan to Pay</h3>
+    <!-- PAYMENT METHOD GRID -->
+    <p style="font-size:0.75rem; color:#555; letter-spacing:1.5px; margin-bottom:0.8rem;">
+      SELECT A PAYMENT METHOD
+    </p>
 
-      <img
-        src="QR_GMS.jpeg"
-        alt="Payment QR Code"
-        class="qr-image"
-      >
-
-      <p id="methodInfo" class="payment-info">
-        Please scan the QR code using your selected payment method.
-      </p>
-
-      <button class="auth-btn">
-        Confirm Payment <i class="fas fa-check-circle"></i>
+    <div class="method-grid">
+      <button class="pay-method-btn" onclick="selectMethod(this, 'tng', 'Touch n Go')">
+        <img src="https://d1eipm3vz40hy0.cloudfront.net/images/Customer+Stories+/TNG_Digital/TNG_logo_4.png" alt="TnG">
+        Touch 'n Go
+      </button>
+      <button class="pay-method-btn" onclick="selectMethod(this, 'grab', 'GrabPay')">
+        <img src="https://th.bing.com/th/id/OIP.2ptTTng_CYNE76q5e6tMsQHaFj?w=239&h=180&c=7&r=0&o=7&pid=1.7&rm=3" alt="Grab">
+        GrabPay
+      </button>
+      <button class="pay-method-btn" onclick="selectMethod(this, 'maybank', 'Maybank')">
+        <img src="https://th.bing.com/th/id/OIP.PrH-4QasUhG_mpAi8xCeSgHaEK?w=299&h=180&c=7&r=0&o=7&pid=1.7&rm=3" alt="Maybank">
+        Maybank
+      </button>
+      <button class="pay-method-btn" onclick="selectMethod(this, 'card', 'Credit / Debit Card')">
+        <i class="fas fa-credit-card"></i>
+        Card
+      </button>
+      <button class="pay-method-btn" onclick="selectMethod(this, 'cash', 'Cash')">
+        <i class="fas fa-money-bill-wave"></i>
+        Cash
       </button>
     </div>
+
+    <div class="selected-label" id="selectedLabel">No payment method selected</div>
+
+    <button class="confirm-btn" id="confirmBtn" disabled onclick="goToGateway()">
+      PROCEED TO PAYMENT <i class="fas fa-arrow-right"></i>
+    </button>
 
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer class="footer">
-  <div class="footer-container">
-    <div class="footer-brand">
-      <h2>GYM<span>First</span></h2>
-      <p>Train with purpose. Build strength for life.</p>
-    </div>
-
-    <div class="footer-links">
-      <h4>Quick Links</h4>
-      <a href="#">Membership</a>
-      <a href="#">Pricing</a>
-      <a href="#">Contact</a>
-      <a href="AboutUs.html#about">About Us</a>
-    </div>
-
-    <div class="footer-social">
-      <h4>Follow Us</h4>
-      <div class="social-icons">
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-        <a href="#"><i class="fab fa-youtube"></i></a>
-      </div>
-    </div>
-  </div>
-
   <div class="footer-bottom">
     <p>© 2026 GymFirst. All rights reserved.</p>
   </div>
 </footer>
 
-<!-- SCRIPT -->
-<!-- PLAN & PAYMENT LOGIC -->
 <script>
-  const params = new URLSearchParams(window.location.search);
+  // ── Read pendingPayment saved by Transaction.js ──
+  const pending = JSON.parse(localStorage.getItem("pendingPayment") || "{}");
 
-  const plan = params.get("plan");
-  const price = params.get("price");
-  const duration = params.get("duration");
-  const method = params.get("method");
+  // ── Fill plan summary ──
+  document.getElementById("planName").textContent     = pending.planName || "—";
+  document.getElementById("planPrice").textContent    = pending.price    || "—";
+  document.getElementById("planDuration").textContent = pending.duration || "—";
 
-  const planName = document.getElementById("planName");
-  const planPrice = document.getElementById("planPrice");
-  const planDuration = document.getElementById("planDuration");
-  const validTill = document.getElementById("validTill");
-  const methodInfo = document.getElementById("methodInfo");
+  // ── Calculate valid until from months ──
+  const months  = Number(pending.months) || 1;
+  const endDate = new Date();
+  endDate.setMonth(endDate.getMonth() + months);
+  document.getElementById("validTill").textContent = endDate.toLocaleDateString("en-GB");
 
-  // PLAN NAME
-  if (plan) {
-    planName.textContent =
-      plan.charAt(0).toUpperCase() + plan.slice(1) + " Plan";
+  // ── Payment method selection ──
+  let chosenMethod     = null;
+  let chosenMethodName = null;
+
+  function selectMethod(el, method, label) {
+    // Highlight button
+    document.querySelectorAll(".pay-method-btn").forEach(b => b.classList.remove("selected"));
+    el.classList.add("selected");
+
+    chosenMethod     = method;
+    chosenMethodName = label;
+
+    document.getElementById("selectedLabel").innerHTML = `Selected: <span>${label}</span>`;
+
+    // Enable confirm button
+    const btn    = document.getElementById("confirmBtn");
+    btn.disabled = false;
+    btn.classList.add("ready");
   }
 
-  // PRICE
-  if (price) {
-    planPrice.textContent = "RM " + price;
-  }
+  // ── Go to PaymentGateway ──
+  function goToGateway() {
+    if (!chosenMethod) return;
 
-  // DURATION + EXPIRY
-  if (duration) {
-    planDuration.textContent = duration;
+    // Save chosen method into pendingPayment
+    pending.paymentMethod     = chosenMethod;
+    pending.paymentMethodName = chosenMethodName;
+    localStorage.setItem("pendingPayment", JSON.stringify(pending));
 
-    const today = new Date();
-    const endDate = new Date(today);
+    // Navigate to PaymentGateway with all needed info in URL
+    const url = `PaymentGateway.html`
+      + `?method=${encodeURIComponent(chosenMethod)}`
+      + `&price=${encodeURIComponent(pending.price || "RM59")}`
+      + `&plan=${encodeURIComponent(pending.planName || "Basic Plan")}`
+      + `&duration=${encodeURIComponent(pending.duration || "1 Month")}`;
 
-    if (duration.includes("Month")) {
-      endDate.setMonth(today.getMonth() + 1);
-    }
-
-    if (duration.includes("Year")) {
-      endDate.setFullYear(today.getFullYear() + 1);
-    }
-
-    validTill.textContent = endDate.toDateString();
-  }
-
-  // PAYMENT METHOD MESSAGE
-  if (method === "cash") {
-    methodInfo.textContent =
-      "Please visit the GymFirst front desk to complete your payment in cash.";
-  }
-
-  if (method === "tng") {
-    methodInfo.textContent =
-      "Scan the Touch ’n Go QR code to complete your payment.";
-  }
-
-  if (method === "grab") {
-    methodInfo.textContent =
-      "Use GrabPay on your mobile device to complete the transaction securely.";
+    window.location.href = url;
   }
 </script>
 

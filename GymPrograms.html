@@ -20,6 +20,8 @@
   <!-- CSS Files-->
   <link rel="stylesheet" href="Gym.css">
   <link rel ="stylesheet" href="GymProgram.css">
+  <link rel ="stylesheet" href="profile-script.css">
+  <link rel="stylesheet" href="auth.css">
 
   <style>
     /* Additional styles for the Programs page can go here */
@@ -85,7 +87,7 @@
     </ul>
    
     <div class="dropdown">
-      <a href="#" class="cta">Join Now</a>
+      <div id="ctaArea"></div>
     </div>
   </div>
 </header>
@@ -215,32 +217,7 @@
   </div>
 </footer>
 
- <!-- CONTACT FLOATING BUTTON -->
-<div class="contact-fab" id="contactFab">
-  <i class="fas fa-comment-dots"></i>
-</div>
 
-<!-- CONTACT MODAL -->
-<div class="modal" id="contactModal">
-  <div class="modal-content contact-modal">
-
-    <span class="close-btn" id="closeContact">&times;</span>
-
-    <h2>Contact Us</h2>
-    <p class="contact-sub">Have a question? Send us your inquiry.</p>
-
-    <form class="contact-form">
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Email Address" required>
-      <textarea placeholder="Your Inquiry..." rows="4" required></textarea>
-
-      <button type="submit" class="auth-btn">
-        Send <i class="fas fa-paper-plane"></i>
-      </button>
-    </form>
-
-  </div>
-</div>
 
 <!-- SCRIPTING SECTIONS -->
  <!-- FADEUP ANIMATION FOR EXPLORE BUTTON -->
@@ -388,6 +365,132 @@ if (indicator && nav) {
 }
 </script>
 
+<!-- User Profile Dropdown Logic -->
+<script>
+  (function() {
+    const gymUser = JSON.parse(localStorage.getItem("gymUser") || "null");
+    const ctaArea = document.getElementById("ctaArea");
+    if (!ctaArea) return;
+
+    if (!gymUser) {
+      // Not logged in → show Join Now
+      ctaArea.innerHTML = `<a href="Membership.html#join" class="cta">Join Now</a>`;
+      return;
+    }
+
+    // Build initials
+    const initials = ((gymUser.fname?.[0] || "") + (gymUser.lname?.[0] || "")).toUpperCase() || "G";
+    const fullName  = `${gymUser.fname || ""} ${gymUser.lname || ""}`.trim();
+
+    // Validity progress bar
+    let fillPct = 100;
+    if (gymUser.joinDate && gymUser.validUntil) {
+      const join  = parseDate(gymUser.joinDate);
+      const expiry = parseDate(gymUser.validUntil);
+      const now   = new Date();
+      const total = expiry - join;
+      const elapsed = now - join;
+      fillPct = Math.max(0, Math.min(100, 100 - (elapsed / total * 100)));
+    }
+
+    function parseDate(str) {
+      // Parse dd/mm/yyyy
+      const [d, m, y] = str.split("/");
+      return new Date(`${y}-${m}-${d}`);
+    }
+
+    ctaArea.innerHTML = `
+      <div class="profile-wrapper">
+        <button class="profile-btn" id="profileToggle">
+          <div class="profile-avatar">${initials}</div>
+          ${gymUser.fname || "Member"}
+        </button>
+
+        <div class="profile-dropdown" id="profileDropdown">
+
+          <!-- Header -->
+          <div class="pd-header">
+            <div class="pd-avatar">${initials}</div>
+            <div class="pd-name">${fullName || "GymFirst Member"}</div>
+            <div class="pd-username">@${gymUser.username || "—"}</div>
+          </div>
+
+          <!-- Info rows -->
+          <div class="pd-body">
+            <div class="pd-row">
+              <span class="pd-row-label"><i class="fas fa-envelope"></i> Email</span>
+              <span class="pd-row-value">${gymUser.email || "—"}</span>
+            </div>
+            <div class="pd-row">
+              <span class="pd-row-label"><i class="fas fa-id-badge"></i> Member ID</span>
+              <span class="pd-row-value">#${gymUser.mid || "—"}</span>
+            </div>
+            <div class="pd-row">
+              <span class="pd-row-label"><i class="fas fa-dumbbell"></i> Plan</span>
+              <span class="pd-row-value red">${gymUser.planName || "—"}</span>
+            </div>
+            <div class="pd-row">
+              <span class="pd-row-label"><i class="fas fa-calendar-plus"></i> Joined</span>
+              <span class="pd-row-value">${gymUser.joinDate || "—"}</span>
+            </div>
+            <div class="pd-row">
+              <span class="pd-row-label"><i class="fas fa-calendar-times"></i> Expires</span>
+              <span class="pd-row-value red">${gymUser.validUntil || "—"}</span>
+            </div>
+          </div>
+
+          <!-- Validity bar -->
+          <div class="validity-bar-wrap">
+            <div class="validity-label">
+              <span>Membership validity</span>
+              <span>${Math.round(fillPct)}% remaining</span>
+            </div>
+            <div class="validity-bar">
+              <div class="validity-fill" id="validityFill" style="width:0%"></div>
+            </div>
+          </div>
+
+          <!-- Logout -->
+          <div class="pd-footer">
+            <button class="logout-btn" id="logoutBtn">
+              <i class="fas fa-sign-out-alt"></i> LOG OUT
+            </button>
+          </div>
+
+        </div>
+      </div>
+    `;
+
+    // Animate bar after render
+    setTimeout(() => {
+      const fill = document.getElementById("validityFill");
+      if (fill) fill.style.width = fillPct + "%";
+    }, 300);
+
+    // Toggle dropdown
+    document.getElementById("profileToggle").addEventListener("click", function(e) {
+      e.stopPropagation();
+      document.getElementById("profileDropdown").classList.toggle("open");
+    });
+
+    // Logout
+    document.getElementById("logoutBtn").addEventListener("click", function() {
+      localStorage.removeItem("gymUser");
+      window.location.reload();
+    });
+
+    // Close on outside click
+    document.addEventListener("click", function(e) {
+      const dd = document.getElementById("profileDropdown");
+      if (dd && !e.target.closest(".profile-wrapper")) {
+        dd.classList.remove("open");
+      }
+    });
+  })();
+</script>
+
+<!-- Login Authentication -->
+<script src="auth.js"></script>
 
 </body>
 </html>

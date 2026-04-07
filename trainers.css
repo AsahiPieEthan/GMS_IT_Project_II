@@ -4,7 +4,6 @@ html {
   scroll-behavior: smooth;
 }
 
-
 /* ===== CLASSES HERO ===== */
 .classes-hero {
   background: #000;
@@ -139,6 +138,7 @@ html {
   color: #fff;
 }
 
+
 /* ===== PAGINATION ===== */
 .pagination {
   background: #0b0b0b;
@@ -164,24 +164,10 @@ html {
   box-shadow: 0 0 15px rgba(255, 59, 59, 0.6);
 }
 
-/* ===== EXPLORE HERO SECTION ===== */
-.classes-hero {
-  position: relative;
-  min-height: 90vh;
-  background: 
-    linear-gradient(
-      rgba(0, 0, 0, 0.75),
-      rgba(0, 0, 0, 0.9)
-    ),
-    url("gymimage.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  display: flex;
-  align-items: center;
-  padding: 0 10%;
-  color: #fff;
+.pagination span.active {
+  background: #ff3b3b;
+  color: #000;
+  box-shadow: 0 0 15px rgba(255, 59, 59, 0.6);
 }
 
 /*TRAINERS SECTION*/
@@ -201,10 +187,11 @@ html {
   min-height: 90vh;
   background:
     linear-gradient(
-      rgba(0, 0, 0, 0.75),
+      rgba(0, 0, 0, 0.555),
       rgba(0, 0, 0, 0.9)
     ),
-    url("gymimage.jpg");
+    url("https://mir-s3-cdn-cf.behance.net/project_modules/1400/f32c15217275147.678e4c61ee9b8.jpg");
+    text-decoration: none;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -237,6 +224,7 @@ html {
   border-radius: 30px;
   font-weight: 700;
   transition: 0.3s ease;
+  text-decoration: none;
 }
 
 .explore-btn:hover {

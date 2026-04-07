@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment Successful | GymFirst</title>
+  <link rel="icon" type="image/png" href="https://images.template.net/510312/Strength-Gym-Logo-edit-online.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Fjalla+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Gym.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #0a0a0a;
+      color: #fff;
+      font-family: 'Fjalla One', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .success-section {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6rem 1rem 3rem;
+    }
+
+    .success-card {
+      background: #111;
+      border: 1px solid #1e1e1e;
+      border-radius: 24px;
+      padding: 3rem 2.5rem;
+      max-width: 560px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      animation: slideUp 0.6s ease;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .success-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #e63946, #ff6b6b, #e63946);
+      background-size: 200%;
+      animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+      0%   { background-position: 200% center; }
+      100% { background-position: -200% center; }
+    }
+
+    .check-icon {
+      width: 90px; height: 90px;
+      background: linear-gradient(135deg, #e63946, #c1121f);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 2.5rem;
+      animation: popIn 0.5s 0.3s both;
+      box-shadow: 0 0 40px rgba(230,57,70,0.4);
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+
+    .success-title {
+      font-size: 2.2rem;
+      color: #fff;
+      letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+    }
+
+    .success-sub {
+      color: #888;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+    }
+
+    .receipt {
+      background: #0d0d0d;
+      border: 1px solid #222;
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      text-align: left;
+    }
+
+    .receipt-title {
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      color: #e63946;
+      margin-bottom: 1rem;
+    }
+
+    .receipt-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid #1a1a1a;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.88rem;
+    }
+
+    .receipt-row:last-child { border-bottom: none; }
+    .receipt-row span:first-child { color: #666; }
+    .receipt-row span:last-child  { color: #fff; font-weight: 600; }
+    .receipt-row .highlight       { color: #e63946; }
+
+    /* Countdown */
+    .countdown-box {
+      background: #0d0d0d;
+      border: 1px solid #222;
+      border-radius: 12px;
+      padding: 1rem 1.5rem;
+      margin-bottom: 1.2rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem;
+      color: #555;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+    }
+
+    .countdown-ring {
+      position: relative;
+      width: 44px; height: 44px;
+    }
+
+    .countdown-ring svg {
+      transform: rotate(-90deg);
+      width: 44px; height: 44px;
+    }
+
+    .countdown-ring circle {
+      fill: none;
+      stroke: #1e1e1e;
+      stroke-width: 3;
+    }
+
+    .countdown-ring .progress {
+      stroke: #e63946;
+      stroke-dasharray: 113;
+      stroke-dashoffset: 0;
+      stroke-linecap: round;
+      transition: stroke-dashoffset 1s linear;
+    }
+
+    .countdown-number {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Fjalla One', sans-serif;
+      font-size: 1.1rem;
+      color: #e63946;
+    }
+
+    /* Buttons */
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .go-home-btn {
+      flex: 1;
+      display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+      padding: 0.9rem 1.5rem;
+      background: linear-gradient(135deg, #e63946, #c1121f);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      font-family: 'Fjalla One', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 1px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .go-home-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(230,57,70,0.4);
+    }
+
+    /* Confetti */
+    .confetti {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none; z-index: 0;
+      overflow: hidden;
+    }
+
+    .confetti-piece {
+      position: absolute;
+      width: 8px; height: 14px;
+      top: -20px;
+      animation: fall linear forwards;
+      border-radius: 2px;
+    }
+
+    @keyframes fall {
+      to { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="confetti" id="confetti"></div>
+
+<header class="header">
+  <div class="nav-container">
+    <h2 class="logo">GYM<span>First</span></h2>
+    <ul class="nav-links">
+      <li><a href="Gymindex.html">Home</a></li>
+      <li><a href="GymPrograms.html">Programs</a></li>
+      <li><a href="trainers.html">Trainers</a></li>
+      <li><a href="Membership.html">Membership</a></li>
+      <li><a href="AboutUs.html#about">About Us</a></li>
+
+      <span class="nav-indicator"></span>
+    </ul>
+    <div class="dropdown">
+    <div id="ctaArea"></div>
+     <!-- <a href="#" class="cta">Join Now</a> -->
+    </div>
+  </div>
+</header>
+
+<section class="success-section">
+  <div class="success-card">
+
+    <div class="check-icon">✓</div>
+    <h1 class="success-title">PAYMENT SUCCESSFUL</h1>
+    <p class="success-sub">Welcome to GymFirst! Your membership is now active.</p>
+
+    <!-- RECEIPT -->
+    <div class="receipt">
+      <div class="receipt-title">MEMBERSHIP RECEIPT</div>
+      <div class="receipt-row"><span>Member Name</span><span id="rcptName">—</span></div>
+      <div class="receipt-row"><span>Username</span><span id="rcptUsername">—</span></div>
+      <div class="receipt-row"><span>Email</span><span id="rcptEmail">—</span></div>
+      <div class="receipt-row"><span>Plan</span><span class="highlight" id="rcptPlan">—</span></div>
+      <div class="receipt-row"><span>Amount Paid</span><span class="highlight" id="rcptPrice">—</span></div>
+      <div class="receipt-row"><span>Payment Method</span><span id="rcptMethod">—</span></div>
+      <div class="receipt-row"><span>Join Date</span><span id="rcptJoin">—</span></div>
+      <div class="receipt-row"><span>Valid Until</span><span id="rcptValid">—</span></div>
+    </div>
+
+    <!-- COUNTDOWN -->
+    <div class="countdown-box">
+      <div class="countdown-ring">
+        <svg viewBox="0 0 44 44">
+          <circle cx="22" cy="22" r="18"/>
+          <circle cx="22" cy="22" r="18" class="progress" id="progressRing"/>
+        </svg>
+        <span class="countdown-number" id="countdown">5</span>
+      </div>
+      <span>Redirecting to homepage automatically...</span>
+    </div>
+
+    <!-- BUTTONS -->
+    <div class="btn-group">
+      <a href="Gymindex.html" class="go-home-btn">
+        <i class="fas fa-home"></i> Back to Homepage
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-bottom">
+    <p>© 2026 GymFirst. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  // ── Load data from both sources ──
+  const pending = JSON.parse(localStorage.getItem("pendingPayment") || "{}");
+  const user    = JSON.parse(localStorage.getItem("gymUser")        || "{}");
+
+  // ── Merge all fields (pendingPayment has fname/lname/email from Transaction.js) ──
+  const fname    = pending.fname    || user.fname    || "";
+  const lname    = pending.lname    || user.lname    || "";
+  const email    = pending.email    || user.email    || "";
+  const username = user.username    || "";
+  const mid      = user.mid         || "";
+
+  // ── Receipt display ──
+  document.getElementById("rcptName").textContent     = (fname + " " + lname).trim() || "—";
+  document.getElementById("rcptUsername").textContent = username ? "@" + username : "—";
+  document.getElementById("rcptEmail").textContent    = email || "—";
+  document.getElementById("rcptPlan").textContent     = pending.planName  || "—";
+  document.getElementById("rcptPrice").textContent    = pending.price     || "—";
+
+  const methodLabels = {
+    tng: "Touch 'n Go", grab: "GrabPay", maybank: "Maybank",
+    card: "Credit / Debit Card", bsn: "BSN", cash: "Cash"
+  };
+  document.getElementById("rcptMethod").textContent =
+    methodLabels[pending.paymentMethod] || pending.paymentMethodName || pending.paymentMethod || "—";
+
+  // ── Dates ──
+  const joinDate = new Date();
+  const months   = Number(pending.months) || 1;
+  const endDate  = new Date();
+  endDate.setMonth(endDate.getMonth() + months);
+
+  document.getElementById("rcptJoin").textContent  = joinDate.toLocaleDateString("en-GB");
+  document.getElementById("rcptValid").textContent = endDate.toLocaleDateString("en-GB");
+
+  // ── Save COMPLETE gymUser so profile icon shows real data ──
+  const updatedUser = {
+    fname:      fname,
+    lname:      lname,
+    email:      email,
+    username:   username,
+    mid:        mid,
+    planName:   pending.planName  || "—",
+    price:      pending.price     || "—",
+    joinDate:   joinDate.toLocaleDateString("en-GB"),
+    validUntil: endDate.toLocaleDateString("en-GB"),
+    months:     months
+  };
+  localStorage.setItem("gymUser", JSON.stringify(updatedUser));
+
+  // ── Clean up pending ──
+  localStorage.removeItem("pendingPayment");
+
+  // ── Confetti ──
+  const colors = ["#e63946","#ff6b6b","#fff","#ffd60a","#ff9f1c"];
+  const container = document.getElementById("confetti");
+  for (let i = 0; i < 70; i++) {
+    const el = document.createElement("div");
+    el.className = "confetti-piece";
+    el.style.left              = Math.random() * 100 + "vw";
+    el.style.background        = colors[Math.floor(Math.random() * colors.length)];
+    el.style.animationDuration = (Math.random() * 2 + 2) + "s";
+    el.style.animationDelay    = (Math.random() * 2) + "s";
+    el.style.transform         = `rotate(${Math.random() * 360}deg)`;
+    container.appendChild(el);
+  }
+
+  // ── Countdown ring ──
+  let count = 5;
+  const countEl  = document.getElementById("countdown");
+  const ringEl   = document.getElementById("progressRing");
+  const circumference = 113; // 2 * π * 18
+
+  ringEl.style.strokeDashoffset = 0;
+
+  const timer = setInterval(() => {
+    count--;
+    countEl.textContent = count;
+    // Shrink ring
+    ringEl.style.strokeDashoffset = circumference * (1 - count / 5);
+
+    if (count <= 0) {
+      clearInterval(timer);
+      window.location.href = "Gymindex.html";
+    }
+  }, 1000);
+</script>
+
+</body>
+</html>

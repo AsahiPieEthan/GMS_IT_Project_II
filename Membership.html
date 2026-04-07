@@ -21,7 +21,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fjalla+One&family=MedievalSharp&family=Oswald:wght@200..700&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
   <!-- CSS Files-->
    <link rel="stylesheet" href="Gym.css">
-
+    <link rel ="stylesheet" href="profile-script.css">
+    <link rel="stylesheet" href="auth.css">
     </head>
 
     <body style = "font-family:fjalla one, sans-serif;">
@@ -67,7 +68,7 @@
 
       <span class="nav-indicator"></span>
     </ul>
-    <a href="Membership.html#join" class="cta">Join Now</a>
+     <div id="ctaArea"></div>
   </div>
 </header>
 
@@ -87,7 +88,9 @@
         <li>Free Wi-Fi</li>
         <li>1 Guest Pass/Month</li>
       </ul>
-       <a href="Transaction.html?plan=basic" class="join-btn">Join Now</a>
+      <a data-href="Transaction.html?plan=basic&price=RM59&duration=1 Month&method=tng" class="join-btn">
+  Join Now
+</a>
     </div>
 
     <!-- Pro Plan (highlighted) -->
@@ -100,7 +103,9 @@
         <li>Group Classes & Workshops</li>
         <li>Personal Trainer Consultation</li>
       </ul>
-       <a href="Transaction.html?plan=pro" class="join-btn">Join Now</a>
+       <a data-href="Transaction.html?plan=pro&price=RM89&duration=1 Month&method=tng" class="join-btn">
+  Join Now
+</a>
     </div>
 
     <!-- Elite Plan -->
@@ -113,7 +118,9 @@
         <li>Nutrition & Meal Plan</li>
         <li>Priority Booking & VIP Access</li>
       </ul>
-      <a href="Transaction.html?plan=elite" class="join-btn">Join Now</a>
+      <a data-href="Transaction.html?plan=elite&price=RM109&duration=1 Month&method=tng" class="join-btn">
+  Join Now
+</a>
     </div>
   </div>
 </section>
@@ -137,7 +144,9 @@
         <li>Access to Group Classes</li>
         <li>Save up to 15%</li>
       </ul>
-     <a href="Transaction.html?plan=sixmo" class="price-btn">Join Now</a>
+     <a data-href="Transaction.html?plan=sixmo&price=RM249&duration=6 Months&method=tng" class="price-btn">
+  Join Now
+</a>
     </div>
 
     <!-- 12 Month Plan (Best Value) -->
@@ -156,7 +165,9 @@
       </ul>
 
       <!-- JOIN BUTTON AT BOTTOM -->
-      <a href="Transaction.html?plan=annual" class="price-btn">Join Now</a>
+      <a data-href="Transaction.html?plan=annual&price=RM449&duration=1 Year&method=tng" class="price-btn">
+  Join Now
+</a>
     </div>
 
   </div>
@@ -383,5 +394,159 @@ if (modal) {
     indicator.style.opacity = "0";
   });
 </script>
+
+<!-- Profile Dropdown Logic -->
+ <script>
+  (function() {
+    const gymUser = JSON.parse(localStorage.getItem("gymUser") || "null");
+    const ctaArea = document.getElementById("ctaArea");
+    if (!ctaArea) return;
+
+    if (!gymUser) {
+      // Not logged in → show Join Now
+      ctaArea.innerHTML = `<a href="Membership.html#join" class="cta">Join Now</a>`;
+      return;
+    }
+
+    // Build initials
+    const initials = ((gymUser.fname?.[0] || "") + (gymUser.lname?.[0] || "")).toUpperCase() || "G";
+    const fullName  = `${gymUser.fname || ""} ${gymUser.lname || ""}`.trim();
+
+    // Validity progress bar
+    let fillPct = 100;
+    if (gymUser.joinDate && gymUser.validUntil) {
+      const join  = parseDate(gymUser.joinDate);
+      const expiry = parseDate(gymUser.validUntil);
+      const now   = new Date();
+      const total = expiry - join;
+      const elapsed = now - join;
+      fillPct = Math.max(0, Math.min(100, 100 - (elapsed / total * 100)));
+    }
+
+    function parseDate(str) {
+      // Parse dd/mm/yyyy
+      const [d, m, y] = str.split("/");
+      return new Date(`${y}-${m}-${d}`);
+    }
+
+    ctaArea.innerHTML = `
+      <div class="profile-wrapper">
+        <button class="profile-btn" id="profileToggle">
+          <div class="profile-avatar">${initials}</div>
+          ${gymUser.fname || "Member"}
+        </button>
+
+        <div class="profile-dropdown" id="profileDropdown">
+
+          <!-- Header -->
+          <div class="pd-header">
+            <div class="pd-avatar">${initials}</div>
+            <div class="pd-name">${fullName || "GymFirst Member"}</div>
+            <div class="pd-username">@${gymUser.username || "—"}</div>
+          </div>
+
+          <!-- Info rows -->
+          <div class="pd-body">
+            <div class="pd-row">
+              <span class="pd-row-label"><i class="fas fa-envelope"></i> Email</span>
+              <span class="pd-row-value">${gymUser.email || "—"}</span>
+            </div>
+            <div class="pd-row">
+              <span class="pd-row-label"><i class="fas fa-id-badge"></i> Member ID</span>
+              <span class="pd-row-value">#${gymUser.mid || "—"}</span>
+            </div>
+            <div class="pd-row">
+              <span class="pd-row-label"><i class="fas fa-dumbbell"></i> Plan</span>
+              <span class="pd-row-value red">${gymUser.planName || "—"}</span>
+            </div>
+            <div class="pd-row">
+              <span class="pd-row-label"><i class="fas fa-calendar-plus"></i> Joined</span>
+              <span class="pd-row-value">${gymUser.joinDate || "—"}</span>
+            </div>
+            <div class="pd-row">
+              <span class="pd-row-label"><i class="fas fa-calendar-times"></i> Expires</span>
+              <span class="pd-row-value red">${gymUser.validUntil || "—"}</span>
+            </div>
+          </div>
+
+          <!-- Validity bar -->
+          <div class="validity-bar-wrap">
+            <div class="validity-label">
+              <span>Membership validity</span>
+              <span>${Math.round(fillPct)}% remaining</span>
+            </div>
+            <div class="validity-bar">
+              <div class="validity-fill" id="validityFill" style="width:0%"></div>
+            </div>
+          </div>
+
+          <!-- Logout -->
+          <div class="pd-footer">
+            <button class="logout-btn" id="logoutBtn">
+              <i class="fas fa-sign-out-alt"></i> LOG OUT
+            </button>
+          </div>
+
+        </div>
+      </div>
+    `;
+
+    // Animate bar after render
+    setTimeout(() => {
+      const fill = document.getElementById("validityFill");
+      if (fill) fill.style.width = fillPct + "%";
+    }, 300);
+
+    // Toggle dropdown
+    document.getElementById("profileToggle").addEventListener("click", function(e) {
+      e.stopPropagation();
+      document.getElementById("profileDropdown").classList.toggle("open");
+    });
+
+    // Logout
+    document.getElementById("logoutBtn").addEventListener("click", function() {
+      localStorage.removeItem("gymUser");
+      window.location.reload();
+    });
+
+    // Close on outside click
+    document.addEventListener("click", function(e) {
+      const dd = document.getElementById("profileDropdown");
+      if (dd && !e.target.closest(".profile-wrapper")) {
+        dd.classList.remove("open");
+      }
+    });
+  })();
+</script>
+
+<script>
+  document.querySelectorAll(".join-btn, .price-btn").forEach(btn => {
+    btn.addEventListener("click", function(e) {
+      e.preventDefault();
+      const gymUser = JSON.parse(localStorage.getItem("gymUser") || "null");
+
+      if (gymUser && gymUser.fname) {
+        // ── Already a member → block ──
+        alert(`You already have an active membership!\n\nPlan: ${gymUser.planName}\nExpires: ${gymUser.validUntil}\n\nPlease contact the front desk to renew or upgrade.`);
+
+      } else {
+        // ── Not logged in → go to transaction page directly ──
+        window.location.href = this.getAttribute("data-href");
+      }
+    });
+  });
+</script>
+```
+
+The key difference is — when logged out, it just **navigates directly** to `Transaction.html` via `data-href`. No login modal needed here because new users registering don't have an account yet.
+
+The login modal (`auth.js`) is only for the **header "Join Now"** button, not the plan buttons on the membership page. These are two different things:
+```
+Header "Join Now"     → opens login modal (for existing users)
+Plan "Join Now" cards → goes to Transaction.html (for new users)
+
+<!-- Login Authentication -->
+<script src="auth.js"></script>
+
     </body>
     </html>
