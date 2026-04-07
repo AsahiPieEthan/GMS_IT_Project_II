@@ -19,6 +19,141 @@
   <!-- CSS Files-->
    <link rel="stylesheet" href="Gym.css">
 
+  
+    /* ===== PROFILE DROPDOWN ===== */
+    <style>
+  /* Profile Button */
+  .profile-wrapper { position: relative; }
+
+  .profile-btn {
+    display: flex; align-items: center; gap: 0.6rem;
+    background: #1a1a1a;
+    border: 2px solid #e63946;
+    border-radius: 50px;
+    padding: 0.35rem 1rem 0.35rem 0.35rem;
+    cursor: pointer; color: #fff;
+    font-family: 'Fjalla One', sans-serif;
+    font-size: 0.88rem; letter-spacing: 0.5px;
+    text-decoration: none;
+    transition: background 0.2s, box-shadow 0.2s;
+  }
+  .profile-btn:hover {
+    background: #2a0a0a;
+    box-shadow: 0 4px 16px rgba(230,57,70,0.3);
+  }
+
+  .profile-avatar {
+    width: 34px; height: 34px;
+    background: linear-gradient(135deg, #e63946, #c1121f);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem; font-weight: 700; color: #fff;
+    letter-spacing: 0;
+    flex-shrink: 0;
+  }
+
+  /* Dropdown */
+  .profile-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 14px);
+    right: 0;
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 20px;
+    padding: 0;
+    min-width: 290px;
+    z-index: 9999;
+    box-shadow: 0 24px 48px rgba(0,0,0,0.7);
+    overflow: hidden;
+    animation: dropIn 0.2s ease;
+  }
+
+  @keyframes dropIn {
+    from { opacity:0; transform:translateY(-8px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+
+  .profile-dropdown.open { display: block; }
+
+  /* Dropdown header */
+  .pd-header {
+    background: linear-gradient(135deg, #1a0505, #111);
+    padding: 1.5rem;
+    text-align: center;
+    border-bottom: 1px solid #1e1e1e;
+  }
+
+  .pd-avatar {
+    width: 68px; height: 68px;
+    background: linear-gradient(135deg, #e63946, #c1121f);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.9rem; font-weight: 700; color: #fff;
+    margin: 0 auto 0.9rem;
+    box-shadow: 0 0 24px rgba(230,57,70,0.4);
+  }
+
+  .pd-name {
+    font-family: 'Fjalla One', sans-serif;
+    font-size: 1.15rem; letter-spacing: 1px; color: #fff;
+  }
+
+  .pd-username {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.78rem; color: #e63946; margin-top: 0.2rem;
+  }
+
+  /* Dropdown rows */
+  .pd-body { padding: 1rem 1.2rem; }
+
+  .pd-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid #1a1a1a;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.82rem;
+  }
+  .pd-row:last-of-type { border-bottom: none; }
+
+  .pd-row-label { color: #555; display: flex; align-items: center; gap: 0.5rem; }
+  .pd-row-label i { color: #e63946; width: 14px; text-align: center; }
+  .pd-row-value { color: #fff; font-weight: 600; text-align: right; max-width: 160px; word-break: break-all; }
+  .pd-row-value.red { color: #e63946; }
+
+  /* Validity bar */
+  .validity-bar-wrap { padding: 0 1.2rem 1rem; }
+  .validity-label {
+    display: flex; justify-content: space-between;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.72rem; color: #555; margin-bottom: 0.4rem;
+  }
+  .validity-bar {
+    height: 5px; background: #1e1e1e; border-radius: 99px; overflow: hidden;
+  }
+  .validity-fill {
+    height: 100%; border-radius: 99px;
+    background: linear-gradient(90deg, #e63946, #ff6b6b);
+    transition: width 1s ease;
+  }
+
+  /* Logout */
+  .pd-footer { padding: 0 1.2rem 1.2rem; }
+  .logout-btn {
+    width: 100%; padding: 0.75rem;
+    background: transparent;
+    border: 1px solid #222;
+    color: #555; border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Fjalla One', sans-serif;
+    font-size: 0.85rem; letter-spacing: 1px;
+    transition: all 0.2s; display: flex;
+    align-items: center; justify-content: center; gap: 0.5rem;
+  }
+  .logout-btn:hover { border-color: #e63946; color: #e63946; }
+</style>
+
+
 </head>
 
 <body>
@@ -47,7 +182,7 @@
 
     <p class="no-account">Don't have an account?</p>
 
-    <button class="signup-outline">Sign Up</button>
+    <button class="signup-outline">Buy a Membership</button>
 
   </div>
 </div>
@@ -65,7 +200,8 @@
       <span class="nav-indicator"></span>
     </ul>
     <div class="dropdown">
-    <a href="#" class="cta">Join Now</a>
+    <div id="ctaArea"></div>
+     <!-- <a href="#" class="cta">Join Now</a> -->
     </div>
   </div>
 </header>
@@ -298,7 +434,7 @@
 
   // SignUp.html click  
   signupBtn.addEventListener("click", function() {
-    window.location.href = "SignUp.html"; // make sure this path is correct
+    window.location.href = "Membership.html"; // make sure this path is correct
   });
   
 </script>
@@ -357,6 +493,129 @@
   nav.addEventListener("mouseleave", () => {
     indicator.style.opacity = "0";
   });
+</script>
+
+<script>
+  (function() {
+    const gymUser = JSON.parse(localStorage.getItem("gymUser") || "null");
+    const ctaArea = document.getElementById("ctaArea");
+    if (!ctaArea) return;
+
+    if (!gymUser) {
+      // Not logged in → show Join Now
+      ctaArea.innerHTML = `<a href="Membership.html#join" class="cta">Join Now</a>`;
+      return;
+    }
+
+    // Build initials
+    const initials = ((gymUser.fname?.[0] || "") + (gymUser.lname?.[0] || "")).toUpperCase() || "G";
+    const fullName  = `${gymUser.fname || ""} ${gymUser.lname || ""}`.trim();
+
+    // Validity progress bar
+    let fillPct = 100;
+    if (gymUser.joinDate && gymUser.validUntil) {
+      const join  = parseDate(gymUser.joinDate);
+      const expiry = parseDate(gymUser.validUntil);
+      const now   = new Date();
+      const total = expiry - join;
+      const elapsed = now - join;
+      fillPct = Math.max(0, Math.min(100, 100 - (elapsed / total * 100)));
+    }
+
+    function parseDate(str) {
+      // Parse dd/mm/yyyy
+      const [d, m, y] = str.split("/");
+      return new Date(`${y}-${m}-${d}`);
+    }
+
+    ctaArea.innerHTML = `
+      <div class="profile-wrapper">
+        <button class="profile-btn" id="profileToggle">
+          <div class="profile-avatar">${initials}</div>
+          ${gymUser.fname || "Member"}
+        </button>
+
+        <div class="profile-dropdown" id="profileDropdown">
+
+          <!-- Header -->
+          <div class="pd-header">
+            <div class="pd-avatar">${initials}</div>
+            <div class="pd-name">${fullName || "GymFirst Member"}</div>
+            <div class="pd-username">@${gymUser.username || "—"}</div>
+          </div>
+
+          <!-- Info rows -->
+          <div class="pd-body">
+            <div class="pd-row">
+              <span class="pd-row-label"><i class="fas fa-envelope"></i> Email</span>
+              <span class="pd-row-value">${gymUser.email || "—"}</span>
+            </div>
+            <div class="pd-row">
+              <span class="pd-row-label"><i class="fas fa-id-badge"></i> Member ID</span>
+              <span class="pd-row-value">#${gymUser.mid || "—"}</span>
+            </div>
+            <div class="pd-row">
+              <span class="pd-row-label"><i class="fas fa-dumbbell"></i> Plan</span>
+              <span class="pd-row-value red">${gymUser.planName || "—"}</span>
+            </div>
+            <div class="pd-row">
+              <span class="pd-row-label"><i class="fas fa-calendar-plus"></i> Joined</span>
+              <span class="pd-row-value">${gymUser.joinDate || "—"}</span>
+            </div>
+            <div class="pd-row">
+              <span class="pd-row-label"><i class="fas fa-calendar-times"></i> Expires</span>
+              <span class="pd-row-value red">${gymUser.validUntil || "—"}</span>
+            </div>
+          </div>
+
+          <!-- Validity bar -->
+          <div class="validity-bar-wrap">
+            <div class="validity-label">
+              <span>Membership validity</span>
+              <span>${Math.round(fillPct)}% remaining</span>
+            </div>
+            <div class="validity-bar">
+              <div class="validity-fill" id="validityFill" style="width:0%"></div>
+            </div>
+          </div>
+
+          <!-- Logout -->
+          <div class="pd-footer">
+            <button class="logout-btn" id="logoutBtn">
+              <i class="fas fa-sign-out-alt"></i> LOG OUT
+            </button>
+          </div>
+
+        </div>
+      </div>
+    `;
+
+    // Animate bar after render
+    setTimeout(() => {
+      const fill = document.getElementById("validityFill");
+      if (fill) fill.style.width = fillPct + "%";
+    }, 300);
+
+    // Toggle dropdown
+    document.getElementById("profileToggle").addEventListener("click", function(e) {
+      e.stopPropagation();
+      document.getElementById("profileDropdown").classList.toggle("open");
+    });
+
+    // Logout
+    document.getElementById("logoutBtn").addEventListener("click", function() {
+      localStorage.removeItem("gymUser");
+      window.location.reload();
+    });
+
+    // Close on outside click
+    document.addEventListener("click", function(e) {
+      const dd = document.getElementById("profileDropdown");
+      if (dd && !e.target.closest(".profile-wrapper")) {
+        dd.classList.remove("open");
+      }
+    });
+  })();
 </script>
 
 

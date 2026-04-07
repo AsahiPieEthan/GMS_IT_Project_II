@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Secure Payment | GymFirst</title>
+  <link rel="icon" type="image/png" href="https://images.template.net/510312/Strength-Gym-Logo-edit-online.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Fjalla+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Gym.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #0d0d0d;
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+
+    /* ── Gateway Container ── */
+    .gateway-card {
+      background: #111;
+      border: 1px solid #1e1e1e;
+      border-radius: 24px;
+      width: 100%;
+      max-width: 480px;
+      overflow: hidden;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+      animation: slideUp 0.5s ease;
+    }
+
+    @keyframes slideUp {
+      from { opacity:0; transform:translateY(30px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    /* ── Header Bar ── */
+    .gateway-header {
+      background: #161616;
+      border-bottom: 1px solid #1e1e1e;
+      padding: 1.2rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .gateway-logo {
+      font-family: 'Fjalla One', sans-serif;
+      font-size: 1.3rem;
+      color: #fff;
+    }
+    .gateway-logo span { color: #e63946; }
+
+    .secure-badge {
+      display: flex; align-items: center; gap: 0.4rem;
+      font-size: 0.75rem; color: #4caf50; letter-spacing: 1px;
+    }
+
+    /* ── Amount Banner ── */
+    .amount-banner {
+      background: linear-gradient(135deg, #1a0505, #0d0d0d);
+      border-bottom: 1px solid #1e1e1e;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .amount-label { font-size: 0.75rem; color: #666; letter-spacing: 2px; margin-bottom: 0.4rem; }
+    .amount-value { font-family: 'Fjalla One', sans-serif; font-size: 2.5rem; color: #e63946; }
+    .amount-plan  { font-size: 0.8rem; color: #555; margin-top: 0.3rem; }
+
+    /* ── Method Tabs ── */
+    .method-tabs {
+      display: flex;
+      border-bottom: 1px solid #1e1e1e;
+      overflow-x: auto;
+    }
+
+    .method-tab {
+      flex: 1; min-width: 80px;
+      padding: 0.9rem 0.5rem;
+      background: transparent;
+      border: none; border-bottom: 3px solid transparent;
+      color: #555; cursor: pointer;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.7rem; letter-spacing: 1px;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 0.4rem;
+      transition: all 0.2s;
+    }
+
+    .method-tab i { font-size: 1.2rem; }
+    .method-tab:hover { color: #aaa; }
+    .method-tab.active { color: #e63946; border-bottom-color: #e63946; }
+
+    /* ── Form Area ── */
+    .gateway-body { padding: 1.8rem; }
+
+    .form-panel { display: none; animation: fadeIn 0.3s ease; }
+    .form-panel.active { display: block; }
+
+    @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+    .form-group { margin-bottom: 1.2rem; }
+    .form-label {
+      display: block; font-size: 0.72rem;
+      letter-spacing: 1.5px; color: #555;
+      margin-bottom: 0.5rem; text-transform: uppercase;
+    }
+
+    .form-input {
+      width: 100%; padding: 0.85rem 1rem;
+      background: #0d0d0d; border: 1px solid #222;
+      border-radius: 10px; color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem; transition: border-color 0.2s;
+      outline: none;
+    }
+    .form-input:focus { border-color: #e63946; }
+    .form-input::placeholder { color: #333; }
+
+    .form-row { display: flex; gap: 1rem; }
+    .form-row .form-group { flex: 1; }
+
+    /* Card visual */
+    .card-visual {
+      background: linear-gradient(135deg, #1a1a1a, #222);
+      border: 1px solid #2a2a2a;
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-visual::before {
+      content: '';
+      position: absolute; top: -30px; right: -30px;
+      width: 120px; height: 120px;
+      background: rgba(230,57,70,0.08);
+      border-radius: 50%;
+    }
+
+    .card-chip {
+      width: 36px; height: 28px;
+      background: linear-gradient(135deg, #c9a84c, #f0d080);
+      border-radius: 6px; margin-bottom: 1.2rem;
+    }
+
+    .card-number-display {
+      font-family: 'Fjalla One', sans-serif;
+      font-size: 1.3rem; letter-spacing: 4px;
+      color: #fff; margin-bottom: 1rem;
+    }
+
+    .card-bottom { display: flex; justify-content: space-between; align-items: flex-end; }
+    .card-holder-label, .card-expiry-label { font-size: 0.65rem; color: #555; letter-spacing: 1px; }
+    .card-holder-value, .card-expiry-value { font-size: 0.85rem; color: #ccc; margin-top: 0.2rem; }
+
+    /* E-wallet panels */
+    .ewallet-logo {
+      display: flex; align-items: center; justify-content: center;
+      gap: 1rem; margin-bottom: 1.5rem;
+    }
+    .ewallet-logo img {
+      width: 64px; height: 64px; object-fit: contain;
+      border-radius: 16px; border: 1px solid #222; padding: 8px;
+      background: #1a1a1a;
+    }
+    .ewallet-name { font-family: 'Fjalla One', sans-serif; font-size: 1.4rem; }
+
+    .ewallet-instruction {
+      background: #0d0d0d; border: 1px solid #1e1e1e;
+      border-radius: 12px; padding: 1.2rem;
+      text-align: center; margin-bottom: 1.5rem;
+    }
+    .ewallet-instruction p { color: #666; font-size: 0.85rem; line-height: 1.7; }
+    .ewallet-instruction strong { color: #e63946; }
+
+    .phone-input-wrapper { position: relative; }
+    .phone-prefix {
+      position: absolute; left: 1rem; top: 50%;
+      transform: translateY(-50%); color: #555; font-size: 0.9rem;
+    }
+    .phone-input-wrapper .form-input { padding-left: 3rem; }
+
+    /* Cash panel */
+    .cash-panel { text-align: center; }
+    .cash-icon {
+      width: 80px; height: 80px;
+      background: linear-gradient(135deg, #1a2a0a, #0d0d0d);
+      border: 2px solid #2d4a1a;
+      border-radius: 50%; display: flex; align-items: center;
+      justify-content: center; margin: 0 auto 1.2rem;
+      font-size: 2rem; color: #4caf50;
+    }
+    .cash-steps {
+      background: #0d0d0d; border: 1px solid #1e1e1e;
+      border-radius: 12px; padding: 1.2rem; text-align: left; margin-bottom: 1.5rem;
+    }
+    .cash-step {
+      display: flex; align-items: flex-start; gap: 1rem;
+      padding: 0.6rem 0; border-bottom: 1px solid #161616;
+      font-size: 0.85rem; color: #aaa; line-height: 1.5;
+    }
+    .cash-step:last-child { border-bottom: none; }
+    .step-num {
+      min-width: 24px; height: 24px;
+      background: #e63946; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem; font-weight: 700; color: #fff;
+    }
+
+    /* Pay Button */
+    .pay-btn {
+      width: 100%; padding: 1rem;
+      background: linear-gradient(135deg, #e63946, #c1121f);
+      color: #fff; border: none; border-radius: 12px;
+      font-family: 'Fjalla One', sans-serif;
+      font-size: 1.1rem; letter-spacing: 2px;
+      cursor: pointer; transition: all 0.3s;
+      display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+    }
+    .pay-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(230,57,70,0.4); }
+    .pay-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+    /* Processing overlay */
+    .processing-overlay {
+      display: none; position: fixed;
+      top:0; left:0; right:0; bottom:0;
+      background: rgba(0,0,0,0.85);
+      z-index: 9999; flex-direction: column;
+      align-items: center; justify-content: center; gap: 1.5rem;
+    }
+    .processing-overlay.active { display: flex; }
+
+    .spinner {
+      width: 60px; height: 60px;
+      border: 4px solid #1e1e1e;
+      border-top-color: #e63946;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .processing-text {
+      font-family: 'Fjalla One', sans-serif;
+      font-size: 1.2rem; letter-spacing: 2px; color: #fff;
+    }
+    .processing-sub { font-size: 0.8rem; color: #555; }
+
+    /* Footer */
+    .gateway-footer {
+      padding: 1rem 1.5rem;
+      border-top: 1px solid #1a1a1a;
+      display: flex; align-items: center; justify-content: center; gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .security-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.7rem; color: #444; }
+  </style>
+</head>
+<body>
+
+<!-- Processing Overlay -->
+<div class="processing-overlay" id="processingOverlay">
+  <div class="spinner"></div>
+  <div class="processing-text">PROCESSING PAYMENT</div>
+  <div class="processing-sub">Please do not close this page...</div>
+</div>
+
+<div class="gateway-card">
+
+  <!-- Header -->
+  <div class="gateway-header">
+    <div class="gateway-logo">GYM<span>First</span> Pay</div>
+    <div class="secure-badge">
+      <i class="fas fa-lock"></i> SECURE PAYMENT
+    </div>
+  </div>
+
+  <!-- Amount -->
+  <div class="amount-banner">
+    <div class="amount-label">TOTAL AMOUNT DUE</div>
+    <div class="amount-value" id="amountDisplay">RM59</div>
+    <div class="amount-plan" id="planDisplay">Basic Plan · 1 Month</div>
+  </div>
+
+  <!-- Method Tabs -->
+  <div class="method-tabs">
+    <button class="method-tab active" onclick="switchTab('card', this)">
+      <i class="fas fa-credit-card"></i> CARD
+    </button>
+    <button class="method-tab" onclick="switchTab('tng', this)">
+      <i class="fas fa-mobile-alt"></i> TNG
+    </button>
+    <button class="method-tab" onclick="switchTab('grab', this)">
+      <i class="fas fa-hand-holding-usd"></i> GRAB
+    </button>
+    <button class="method-tab" onclick="switchTab('maybank', this)">
+      <i class="fas fa-university"></i> MAYBANK
+    </button>
+    <button class="method-tab" onclick="switchTab('cash', this)">
+      <i class="fas fa-money-bill"></i> CASH
+    </button>
+  </div>
+
+  <div class="gateway-body">
+
+    <!-- ── CARD PANEL ── -->
+    <div class="form-panel active" id="panel-card">
+      <div class="card-visual">
+        <div class="card-chip"></div>
+        <div class="card-number-display" id="cardNumDisplay">•••• •••• •••• ••••</div>
+        <div class="card-bottom">
+          <div>
+            <div class="card-holder-label">CARD HOLDER</div>
+            <div class="card-holder-value" id="cardHolderDisplay">FULL NAME</div>
+          </div>
+          <div>
+            <div class="card-expiry-label">EXPIRES</div>
+            <div class="card-expiry-value" id="cardExpiryDisplay">MM/YY</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Card Number</label>
+        <input class="form-input" type="text" maxlength="19" placeholder="1234 5678 9012 3456"
+          oninput="formatCard(this)" id="cardNum">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Cardholder Name</label>
+        <input class="form-input" type="text" placeholder="As printed on card"
+          oninput="document.getElementById('cardHolderDisplay').textContent = this.value.toUpperCase() || 'FULL NAME'">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Expiry Date</label>
+          <input class="form-input" type="text" maxlength="5" placeholder="MM/YY"
+            oninput="formatExpiry(this)">
+        </div>
+        <div class="form-group">
+          <label class="form-label">CVV</label>
+          <input class="form-input" type="password" maxlength="3" placeholder="•••">
+        </div>
+      </div>
+      <button class="pay-btn" onclick="processPayment('Credit / Debit Card')">
+        <i class="fas fa-lock"></i> PAY NOW
+      </button>
+    </div>
+
+    <!-- ── TNG PANEL ── -->
+    <div class="form-panel" id="panel-tng">
+      <div class="ewallet-logo">
+        <img src="https://d1eipm3vz40hy0.cloudfront.net/images/Customer+Stories+/TNG_Digital/TNG_logo_4.png" alt="TnG">
+        <div class="ewallet-name">Touch 'n Go</div>
+      </div>
+      <div class="ewallet-instruction">
+        <p>Enter your registered <strong>Touch 'n Go</strong> phone number.<br>
+        You will receive a payment prompt in your app.</p>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Phone Number</label>
+        <div class="phone-input-wrapper">
+          <span class="phone-prefix">+60</span>
+          <input class="form-input" type="tel" placeholder="12-345 6789">
+        </div>
+      </div>
+      <button class="pay-btn" onclick="processPayment('Touch n Go')">
+        <i class="fas fa-paper-plane"></i> SEND PAYMENT REQUEST
+      </button>
+    </div>
+
+    <!-- ── GRABPAY PANEL ── -->
+    <div class="form-panel" id="panel-grab">
+      <div class="ewallet-logo">
+        <img src="https://th.bing.com/th/id/OIP.2ptTTng_CYNE76q5e6tMsQHaFj?w=239&h=180&c=7&r=0&o=7&pid=1.7&rm=3" alt="GrabPay">
+        <div class="ewallet-name">GrabPay</div>
+      </div>
+      <div class="ewallet-instruction">
+        <p>Enter your <strong>Grab</strong> registered phone number.<br>
+        Approve the payment in your Grab app when prompted.</p>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Phone Number</label>
+        <div class="phone-input-wrapper">
+          <span class="phone-prefix">+60</span>
+          <input class="form-input" type="tel" placeholder="12-345 6789">
+        </div>
+      </div>
+      <button class="pay-btn" onclick="processPayment('GrabPay')">
+        <i class="fas fa-paper-plane"></i> SEND PAYMENT REQUEST
+      </button>
+    </div>
+
+    <!-- ── MAYBANK PANEL ── -->
+    <div class="form-panel" id="panel-maybank">
+      <div class="ewallet-logo">
+        <img src="https://th.bing.com/th/id/OIP.PrH-4QasUhG_mpAi8xCeSgHaEK?w=299&h=180&c=7&r=0&o=7&pid=1.7&rm=3" alt="Maybank">
+        <div class="ewallet-name">Maybank</div>
+      </div>
+      <div class="ewallet-instruction">
+        <p>Enter your <strong>Maybank2u / MAE</strong> username.<br>
+        Approve the transaction via your Maybank app.</p>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Maybank Username</label>
+        <input class="form-input" type="text" placeholder="e.g. weijin123">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input class="form-input" type="password" placeholder="••••••••">
+      </div>
+      <button class="pay-btn" onclick="processPayment('Maybank')">
+        <i class="fas fa-lock"></i> SECURE LOGIN & PAY
+      </button>
+    </div>
+
+    <!-- ── CASH PANEL ── -->
+    <div class="form-panel" id="panel-cash">
+      <div class="cash-panel">
+        <div class="cash-icon"><i class="fas fa-money-bill-wave"></i></div>
+        <h3 style="margin-bottom:1rem; letter-spacing:1px; font-family:'Fjalla One',sans-serif;">Pay at Counter</h3>
+        <div class="cash-steps">
+          <div class="cash-step">
+            <div class="step-num">1</div>
+            <span>Proceed to the <strong style="color:#fff;">GymFirst front desk</strong> with this screen.</span>
+          </div>
+          <div class="cash-step">
+            <div class="step-num">2</div>
+            <span>Inform the staff of your selected plan and show your member details.</span>
+          </div>
+          <div class="cash-step">
+            <div class="step-num">3</div>
+            <span>Pay the amount of <strong style="color:#e63946;" id="cashAmountStep">RM59</strong> in cash.</span>
+          </div>
+          <div class="cash-step">
+            <div class="step-num">4</div>
+            <span>Staff will confirm your membership and issue a receipt.</span>
+          </div>
+        </div>
+        <button class="pay-btn" onclick="processPayment('Cash')">
+          <i class="fas fa-check-circle"></i> CONFIRM CASH PAYMENT
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="gateway-footer">
+    <div class="security-item"><i class="fas fa-shield-alt"></i> SSL SECURED</div>
+    <div class="security-item"><i class="fas fa-lock"></i> 256-BIT ENCRYPTED</div>
+    <div class="security-item"><i class="fas fa-check-circle"></i> VERIFIED MERCHANT</div>
+  </div>
+
+</div>
+
+<script>
+  // ── Load plan info ──
+  const params   = new URLSearchParams(window.location.search);
+  const price    = params.get("price")    || "RM59";
+  const plan     = params.get("plan")     || "Basic Plan";
+  const duration = params.get("duration") || "1 Month";
+
+  document.getElementById("amountDisplay").textContent  = price;
+  document.getElementById("planDisplay").textContent    = `${plan} · ${duration}`;
+  document.getElementById("cashAmountStep").textContent = price;
+
+  // ── Tab switching ──
+  function switchTab(tab, el) {
+    document.querySelectorAll(".method-tab").forEach(t => t.classList.remove("active"));
+    document.querySelectorAll(".form-panel").forEach(p => p.classList.remove("active"));
+    el.classList.add("active");
+    document.getElementById("panel-" + tab).classList.add("active");
+  }
+
+  // ── Card formatting ──
+  function formatCard(input) {
+    let val = input.value.replace(/\D/g, "").substring(0, 16);
+    input.value = val.replace(/(.{4})/g, "$1 ").trim();
+    document.getElementById("cardNumDisplay").textContent =
+      (val + "················").substring(0, 16).replace(/(.{4})/g, "$1 ").trim();
+  }
+
+  function formatExpiry(input) {
+    let val = input.value.replace(/\D/g, "").substring(0, 4);
+    if (val.length >= 2) val = val.substring(0,2) + "/" + val.substring(2);
+    input.value = val;
+    document.getElementById("cardExpiryDisplay").textContent = val || "MM/YY";
+  }
+
+  // ── Process payment ──
+  function processPayment(method) {
+    // Show processing overlay
+    document.getElementById("processingOverlay").classList.add("active");
+
+    // Save payment method
+    const pending = JSON.parse(localStorage.getItem("pendingPayment") || "{}");
+    pending.paymentMethod = method;
+    pending.paidAt        = new Date().toISOString();
+    localStorage.setItem("pendingPayment", JSON.stringify(pending));
+
+    // Simulate processing delay then go to success
+    setTimeout(() => {
+      window.location.href = "Success.html";
+    }, 2500);
+  }
+</script>
+
+</body>
+</html>
