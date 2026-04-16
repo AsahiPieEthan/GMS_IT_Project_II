@@ -102,7 +102,10 @@
               </div>
             </div>
 
-            <div class="pd-footer">
+           <div class="pd-footer">
+              <button class="edit-profile-btn" id="editProfileBtn">
+                <i class="fas fa-user-edit"></i> EDIT PROFILE
+              </button>
               <button class="logout-btn" id="logoutBtn">
                 <i class="fas fa-sign-out-alt"></i> LOG OUT
               </button>
@@ -153,6 +156,14 @@
         destroyModal();
         renderCTA();
       });
+
+      // Edit Profile
+      document.getElementById("editProfileBtn").addEventListener("click", function (e) {
+        e.stopPropagation();
+        document.getElementById("profileDropdown").classList.remove("open");
+        openEditModal();
+      });
+
 
       // Close dropdown on outside click
       document.addEventListener("click", function (e) {
@@ -264,6 +275,132 @@
       }
     });
   }
+   
+  // ── Edit Profile Modal ──────────────────────────────────────────────────
+function openEditModal() {
+    const gymUser = JSON.parse(localStorage.getItem("gymUser") || "null");
+    if (!gymUser) return;
 
+    const existing = document.getElementById("gymEditModal");
+    if (existing) existing.remove();
+
+    const modal = document.createElement("div");
+    modal.className = "modal open";
+    modal.id = "gymEditModal";
+    modal.innerHTML = `
+      <div class="modal-content edit-modal-content">
+        <span class="close-btn" id="editCloseBtn">&times;</span>
+        <h2>Edit Profile</h2>
+        <p class="contact-sub">Leave a field blank to keep it unchanged.</p>
+        <form class="auth-form" id="editProfileForm" autocomplete="off">
+
+          <label class="edit-label">First Name</label>
+          <input type="text" id="editFname" placeholder="${gymUser.fname || ''}" value="${gymUser.fname || ''}">
+
+          <label class="edit-label">Last Name</label>
+          <input type="text" id="editLname" placeholder="${gymUser.lname || ''}" value="${gymUser.lname || ''}">
+
+          <label class="edit-label">Email</label>
+          <input type="email" id="editEmail" placeholder="${gymUser.email || ''}" value="${gymUser.email || ''}">
+
+          <label class="edit-label">Phone / Mobile</label>
+          <input type="text" id="editMobile" placeholder="Enter new mobile number">
+
+          <label class="edit-label">Address</label>
+          <input type="text" id="editAddress" placeholder="Enter new address">
+
+          <hr class="divider">
+          <p class="edit-pass-title">Change Password <span style="font-size:12px;color:#aaa;">(optional)</span></p>
+
+          <label class="edit-label">Current Password</label>
+          <input type="password" id="editOldPass" placeholder="Required to change password">
+
+          <label class="edit-label">New Password</label>
+          <input type="password" id="editNewPass" placeholder="Leave blank to keep current">
+
+          <p class="login-error" id="editError"></p>
+          <p class="edit-success" id="editSuccess"></p>
+
+          <button type="submit" class="auth-btn" id="editSubmitBtn">
+            Save Changes <i class="fas fa-save"></i>
+          </button>
+        </form>
+      </div>`;
+
+    document.body.appendChild(modal);
+
+    document.getElementById("editCloseBtn").addEventListener("click", () => modal.remove());
+    modal.addEventListener("click", e => { if (e.target === modal) modal.remove(); });
+
+    document.getElementById("editProfileForm").addEventListener("submit", async function(e) {
+        e.preventDefault();
+
+        const errorEl   = document.getElementById("editError");
+        const successEl = document.getElementById("editSuccess");
+        const submitBtn = document.getElementById("editSubmitBtn");
+
+        errorEl.textContent   = "";
+        errorEl.style.display = "none";
+        successEl.style.display = "none";
+        submitBtn.disabled    = true;
+        submitBtn.innerHTML   = 'Saving... <i class="fas fa-spinner fa-spin"></i>';
+
+        const payload = {
+            mid:         parseInt(gymUser.mid),
+            fname:       document.getElementById("editFname").value.trim(),
+            lname:       document.getElementById("editLname").value.trim(),
+            email:       document.getElementById("editEmail").value.trim(),
+            mobile:      document.getElementById("editMobile").value.trim(),
+            address:     document.getElementById("editAddress").value.trim(),
+            oldPassword: document.getElementById("editOldPass").value,
+            newPassword: document.getElementById("editNewPass").value
+        };
+
+        try {
+            const res  = await fetch("https://localhost:7132/api/member/update", {
+                method:  "PUT",
+                headers: { "Content-Type": "application/json" },
+                body:    JSON.stringify(payload)
+            });
+            const data = await res.json();
+
+            if (res.ok) {
+                // Update localStorage with new data
+                const updated = {
+                    ...gymUser,
+                    fname:      data.fname      || gymUser.fname,
+                    lname:      data.lname      || gymUser.lname,
+                    email:      data.email      || gymUser.email,
+                    planName:   data.planName   || gymUser.planName,
+                    joinDate:   data.joinDate   || gymUser.joinDate,
+                    validUntil: data.validUntil || gymUser.validUntil
+                };
+                localStorage.setItem("gymUser", JSON.stringify(updated));
+
+                successEl.textContent   = "Profile updated successfully!";
+                successEl.style.display = "block";
+                submitBtn.disabled      = false;
+                submitBtn.innerHTML     = 'Save Changes <i class="fas fa-save"></i>';
+
+                // Refresh the profile dropdown after 1.5s
+                setTimeout(() => {
+                    modal.remove();
+                    renderCTA();
+                }, 1500);
+
+            } else {
+                errorEl.textContent   = data.message || "Update failed.";
+                errorEl.style.display = "block";
+                submitBtn.disabled    = false;
+                submitBtn.innerHTML   = 'Save Changes <i class="fas fa-save"></i>';
+            }
+        } catch (err) {
+            errorEl.textContent   = "Cannot connect to server.";
+            errorEl.style.display = "block";
+            submitBtn.disabled    = false;
+            submitBtn.innerHTML   = 'Save Changes <i class="fas fa-save"></i>';
+        }
+    });
+}
   renderCTA();
 })();

@@ -393,9 +393,13 @@ section {
   box-shadow: 0 20px 40px rgba(0,0,0,0.4);
 }
 
-.price-card.featured {
-  border: 2px solid var(--accent);
-  transform: scale(1.05);
+.price-card.featured h4{
+    margin-bottom: 10px;
+}
+
+.price-card.featured:hover {
+ transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
 }
 
 .price-card h2 {
@@ -979,4 +983,34 @@ a.cta:hover,
 a.join-btn:hover,
 a.price-btn:hover {
   background: #ff3b3b !important;
+}
+
+.scroll-indicator {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.scroll-indicator span {
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-bottom: 3px solid white;
+  border-right: 3px solid white;
+  transform: rotate(45deg);
+  animation: scrollDown 1.5s infinite;
+}
+
+@keyframes scrollDown {
+  0% {
+    opacity: 0;
+    transform: rotate(45deg) translate(-10px, -10px);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(45deg) translate(10px, 10px);
+  }
 }

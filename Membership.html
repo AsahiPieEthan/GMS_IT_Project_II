@@ -74,6 +74,7 @@
   </div>
 </header>
 
+
     <!-- PRICING SECTION -->
 
 <section class="pricing-section" id="join" style="animation: FadeUp 0.5s ease">
@@ -97,11 +98,11 @@
 
     <!-- Pro Plan (highlighted) -->
     <div class="price-card featured" style="animation: FadeUp 4s ease">
+      <h4> Most popular</h4>
       <h2>RM89<span>/month</span></h2>
       <h3>Pro Plan</h3>
       <ul>
         <li>Everything in Basic</li>
-        <li>Access to Premium Equipment</li>
         <li>Group Classes & Workshops</li>
         <li>Personal Trainer Consultation</li>
       </ul>
@@ -126,6 +127,11 @@
     </div>
   </div>
 </section>
+
+<!-- SCROLL DOWN INDICATOR -->
+<div class="scroll-indicator">
+  <span></span>
+</div> 
 
 <!-- LONG TERM SUBSCRIPTION SECTION -->
 <section class="subscription-section" id="subscriptions" style="animation: FadeUp 0.5s ease">
@@ -535,6 +541,13 @@ if (modal) {
         window.location.href = this.getAttribute("data-href");
       }
     });
+  });
+</script>
+
+<!-- Scroll Down Indicator -->
+<script>
+  document.querySelector(".scroll-indicator").addEventListener("click", () => {
+    document.querySelector("#subscriptions").scrollIntoView({ behavior: "smooth" });
   });
 </script>
 

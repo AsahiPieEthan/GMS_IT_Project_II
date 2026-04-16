@@ -90,10 +90,11 @@
     font-family: 'Montserrat', sans-serif;
     font-size: 0.82rem;
   }
+
   .pd-row:last-of-type { border-bottom: none; }
 
-  .pd-row-label { color: #555; display: flex; align-items: center; gap: 0.5rem; }
-  .pd-row-label i { color: #e63946; width: 14px; text-align: center; }
+  .pd-row-label { color: #ffffff; display: flex; align-items: center; gap: 0.5rem; }
+  .pd-row-label i { color: #ffffff; width: 14px; text-align: center; }
   .pd-row-value { color: #fff; font-weight: 600; text-align: right; max-width: 160px; word-break: break-all; }
   .pd-row-value.red { color: #e63946; }
 
@@ -127,3 +128,52 @@
     align-items: center; justify-content: center; gap: 0.5rem;
   }
   .logout-btn:hover { border-color: #e63946; color: #e63946; }
+
+  /* EDIT PROFILE MODAL */
+.edit-modal-content {
+  max-height: 90vh;
+  overflow-y: auto;
+  width: 400px;
+}
+
+.edit-label {
+  display: block;
+  font-size: 12px;
+  color: #aaa;
+  margin: 8px 0 3px;
+}
+
+.edit-pass-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 8px 0 4px;
+  color: #fff;
+}
+
+.edit-success {
+  display: none;
+  color: #4caf50;
+  font-size: 13px;
+  margin: 8px 0;
+  text-align: center;
+}
+
+/* EDIT PROFILE BUTTON */
+.edit-profile-btn {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 8px;
+  background: transparent;
+  border: 1px solid #f10a02;
+  color: #f10a02;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  transition: all 0.25s ease;
+}
+
+.edit-profile-btn:hover {
+  background: #f10a02;
+  color: #fff;
+}
