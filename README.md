@@ -96,6 +96,6 @@ This system was built with a focus on:
 
 ## 👨‍💻 Author
 
-Developed by Wei Jin Pan
+Developed by Wei Jin Pan, Hooi Jun Hin & Hasven
 
 GitHub: https://github.com/AsahiPieethan
