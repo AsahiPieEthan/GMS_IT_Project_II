@@ -48,8 +48,6 @@ A modern gym management website designed to streamline gym operations and improv
 - Modern and clean interface
 - Smooth animations and transitions
 - Optimized user experience
-<img width="1310" height="758" alt="Screenshot 2026-04-14 141350" src="https://github.com/user-attachments/assets/36a28dbc-88ff-4574-8f2f-e6090e42edfd" />
-<img width="1327" height="899" alt="Screenshot 2026-04-14 141007" src="https://github.com/user-attachments/assets/6bc593f6-4fc6-4dfc-8072-0b39641c6403" />
 
 ---
 
@@ -91,7 +89,8 @@ This system was built with a focus on:
 
 <img width="1888" height="769" alt="Screenshot 2026-04-07 103630" src="https://github.com/user-attachments/assets/2ac01269-dbe9-45c2-b7e3-d8a45de96748" /><img width="1245" height="925" alt="Screenshot 2026-04-14 140909" src="https://github.com/user-attachments/assets/593f3987-c50b-498f-8d5c-2f08626e91a1" />
 <img width="365" height="489" alt="Screenshot 2026-04-14 140742" src="https://github.com/user-attachments/assets/2234b879-8a51-4fae-a967-9ed6d8507a28" />
-
+<img width="1310" height="758" alt="Screenshot 2026-04-14 141350" src="https://github.com/user-attachments/assets/36a28dbc-88ff-4574-8f2f-e6090e42edfd" />
+<img width="1327" height="899" alt="Screenshot 2026-04-14 141007" src="https://github.com/user-attachments/assets/6bc593f6-4fc6-4dfc-8072-0b39641c6403" />
 
 ---
 
