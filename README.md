@@ -80,7 +80,7 @@ The Gym API acts as a bridge between the frontend website and backend system, en
 - API: RESTful Gym API
 
 ---
-Screenshots (Prototype showcase) 
+## Screenshots (Prototype showcase) 
 ## Frontend
 <img width="1888" height="769" alt="Screenshot 2026-04-07 103630" src="https://github.com/user-attachments/assets/212bd9b4-db18-447b-ac76-5a9367b210ad" />
 <img width="365" height="489" alt="Screenshot 2026-04-14 140742" src="https://github.com/user-attachments/assets/988f773d-3b81-4413-a631-475dbff4463f" />
