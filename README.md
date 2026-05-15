@@ -75,8 +75,8 @@ The Gym API acts as a bridge between the frontend website and backend system, en
 
 ## ⚙️ Tech Stack
 - Frontend: HTML, CSS, JavaScript (or React if applicable)
-- Backend: Node.js / PHP / Python (edit accordingly)
-- Database: MySQL / MongoDB
+- Backend: Node.js / C#
+- Database: MySQL / SSMS
 - API: RESTful Gym API
 
 ---
